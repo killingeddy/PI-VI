@@ -14,51 +14,52 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
-    rememberMe: false,
   });
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">Entrar</CardTitle>
+          <CardTitle className="text-2xl font-bold">Criar uma conta</CardTitle>
           <CardDescription>
-            Entre com suas informações para acessar sua conta
+            Entre com suas informações para criar uma conta
           </CardDescription>
         </CardHeader>
         <form>
           <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Nome</Label>
+              <Input
+                id="name"
+                name="name"
+                placeholder="Nome completo"
+                required
+                value={formData.name}
+              />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 name="email"
                 type="email"
-                placeholder="john@example.com"
+                placeholder="E-mail"
                 required
                 value={formData.email}
               />
             </div>
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="password">Senha</Label>
-                <Link
-                  href="/"
-                  className="text-sm text-primary underline-offset-4 hover:underline"
-                >
-                  Esqueceu sua senha?
-                </Link>
-              </div>
+              <Label htmlFor="password">Senha</Label>
               <div className="relative">
                 <Input
                   id="password"
@@ -85,26 +86,20 @@ export default function LoginPage() {
                 </Button>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="remember" checked={formData.rememberMe} />
-              <Label htmlFor="remember" className="text-sm">
-                Lembrar-me
-              </Label>
-            </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 mt-4">
             <Link href="/dashboard" className="w-full">
-              <Button type="submit" className="w-full">
-                Entrar
-              </Button>
+            <Button type="submit" className="w-full">
+              Criar conta
+            </Button>
             </Link>
             <div className="text-center text-sm">
-              Ainda não possui uma conta?{" "}
+              Já possui um cadastro?{" "}
               <Link
-                href="/register"
+                href="/login"
                 className="text-primary underline-offset-4 hover:underline"
               >
-                Cadastrar-se
+                Entrar
               </Link>
             </div>
           </CardFooter>

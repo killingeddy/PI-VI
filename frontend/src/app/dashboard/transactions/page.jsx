@@ -133,7 +133,7 @@ export default function TransactionsPage() {
                         <span>Depósitos</span>
                       </div>
                     </TableCell>
-                    <TableCell>-</TableCell>
+                    <TableCell></TableCell>
                     <TableCell>Transferência bancária</TableCell>
                     <TableCell className="text-right">-</TableCell>
                     <TableCell className="text-right">-</TableCell>
@@ -151,8 +151,8 @@ export default function TransactionsPage() {
                         <span>Venda</span>
                       </div>
                     </TableCell>
-                    <TableCell>MSFT</TableCell>
-                    <TableCell>Sold Microsoft Corporation</TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
                     <TableCell className="text-right">8</TableCell>
                     <TableCell className="text-right">R$ 312,50</TableCell>
                     <TableCell className="text-right font-medium">
@@ -169,8 +169,8 @@ export default function TransactionsPage() {
                         <span>Compra</span>
                       </div>
                     </TableCell>
-                    <TableCell>TSLA</TableCell>
-                    <TableCell>Bought Tesla, Inc.</TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
                     <TableCell className="text-right">5</TableCell>
                     <TableCell className="text-right">R$ 640,00</TableCell>
                     <TableCell className="text-right font-medium">
@@ -187,8 +187,8 @@ export default function TransactionsPage() {
                         <span>Dividendo</span>
                       </div>
                     </TableCell>
-                    <TableCell>VNQ</TableCell>
-                    <TableCell>Dividend Payment</TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
                     <TableCell className="text-right">-</TableCell>
                     <TableCell className="text-right">-</TableCell>
                     <TableCell className="text-right font-medium">
@@ -205,8 +205,8 @@ export default function TransactionsPage() {
                         <span>Compra</span>
                       </div>
                     </TableCell>
-                    <TableCell>BTC</TableCell>
-                    <TableCell>Bought Bitcoin</TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
                     <TableCell className="text-right">0.05</TableCell>
                     <TableCell className="text-right">R$ 60.000,00</TableCell>
                     <TableCell className="text-right font-medium">
