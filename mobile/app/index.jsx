@@ -1,4 +1,4 @@
-import { Link, useRouter } from 'expo-router';
+import { Link, useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
@@ -18,7 +18,7 @@ export default function Login() {
         source={require("@/assets/images/logo.png")}
         resizeMode="cover"
         style={{
-          width: '100%',
+          width: "100%",
           height: 400,
           marginTop: -10,
         }}
@@ -92,10 +92,12 @@ export default function Login() {
           textAlign: "center",
         }}
       >
-        <Text style={{ color: "#fff", fontWeight: 'bold' }}>Entrar</Text>
+        <Text style={{ color: "#fff", fontWeight: "bold" }}>Entrar</Text>
       </Link>
       <Button
-        onPress={() => { router.navigate('/register') }}
+        onPress={() => {
+          router.navigate("/register");
+        }}
         style={{
           marginTop: 20,
           alignSelf: "center",
