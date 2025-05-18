@@ -1,9 +1,8 @@
-import { Link, useRouter } from "expo-router";
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { ScrollView, StyleSheet, Text } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 
-export default function Login() {
+export default function Register() {
   // const [email, setEmail] = React.useState("");
   // const [password, setPassword] = React.useState("");
 
@@ -13,37 +12,69 @@ export default function Login() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={require("@/assets/images/logo.png")}
-        resizeMode="cover"
-        style={{
-          width: "100%",
-          height: 400,
-          marginTop: -10,
-        }}
-      />
+    <ScrollView style={styles.container}>
       <Text
         style={{
           fontSize: 30,
           fontWeight: "bold",
           color: "#235c5b",
           textAlign: "center",
-          marginTop: 0,
+          marginTop: 20,
         }}
       >
-        Bem-vindo(a) ao Finara!
+        Cadastre-se
       </Text>
-      <Text
+      <TextInput
+        label="Nome"
+        mode="outlined"
         style={{
-          fontSize: 20,
-          color: "#235c5b",
-          textAlign: "center",
-          marginTop: 10,
+          marginTop: 20,
+          width: "90%",
+          alignSelf: "center",
         }}
-      >
-        Faça login para continuar
-      </Text>
+        theme={{
+          colors: {
+            primary: "#000",
+            underlineColor: "transparent",
+            background: "#fff",
+          },
+          roundness: 50,
+        }}
+      />
+      <TextInput
+        label="Profissão"
+        mode="outlined"
+        style={{
+          marginTop: 20,
+          width: "90%",
+          alignSelf: "center",
+        }}
+        theme={{
+          colors: {
+            primary: "#000",
+            underlineColor: "transparent",
+            background: "#fff",
+          },
+          roundness: 50,
+        }}
+      />
+      <TextInput
+        label="Data de nascimento"
+        mode="outlined"
+        style={{
+          marginTop: 20,
+          width: "90%",
+          alignSelf: "center",
+        }}
+        theme={{
+          colors: {
+            primary: "#000",
+            underlineColor: "transparent",
+            background: "#fff",
+          },
+          roundness: 50,
+        }}
+      />
       <TextInput
         label="Email"
         mode="outlined"
@@ -78,25 +109,21 @@ export default function Login() {
           roundness: 50,
         }}
       />
-      <Link
-        href="/tabs/home"
+      <Button
+        onPress={() => {}}
         style={{
           marginTop: 20,
           alignSelf: "center",
           borderRadius: 50,
           width: "90%",
           backgroundColor: "#235c5b",
-          padding: 15,
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
         }}
       >
-        <Text style={{ color: "#fff", fontWeight: "bold" }}>Entrar</Text>
-      </Link>
+        <Text style={{ color: "#fff" }}>Criar conta</Text>
+      </Button>
       <Button
         onPress={() => {
-          router.navigate("/register");
+          router.back();
         }}
         style={{
           marginTop: 20,
@@ -105,12 +132,10 @@ export default function Login() {
           width: "90%",
         }}
       >
-        <Text style={{ color: "#235c5b" }}>Ainda não tem conta? </Text>
-        <Text style={{ color: "#235c5b", fontWeight: "bold" }}>
-          Cadastre-se
-        </Text>
+        <Text style={{ color: "#235c5b" }}>Já tem uma conta? </Text>
+        <Text style={{ color: "#235c5b", fontWeight: "bold" }}>Entre</Text>
       </Button>
-    </View>
+    </ScrollView>
   );
 }
 

@@ -1,5 +1,3 @@
-import BottomSheet from "@devvie/bottom-sheet";
-import { useRef } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-paper";
 
@@ -8,8 +6,6 @@ export default function SharesScreen() {
     style: "currency",
     currency: "BRL",
   });
-
-  const sheetRef = useRef(null);
 
   return (
     <View style={styles.container}>
@@ -21,10 +17,10 @@ export default function SharesScreen() {
           color: "#235c5b",
         }}
       >
-        Todas as Ações:
+        Acompanhe o que investir:
       </Text>
       <Text style={{ fontSize: 18, marginBottom: 10 }}>
-        Acompanhe o mercado de investimentos:
+        Preparamos algumas sugestões para você, basendo em seu perfil:
       </Text>
       <View
         style={{
@@ -96,7 +92,7 @@ export default function SharesScreen() {
               borderWidth: 1,
               borderColor: "#296157",
             }}
-            onPress={() => sheetRef.current?.open()}
+            onPress={() => console.log("Pressed")}
           >
             <Text style={{ color: "#296157", fontSize: 14 }}>Ver Detalhes</Text>
           </Button>
@@ -179,7 +175,7 @@ export default function SharesScreen() {
               borderWidth: 1,
               borderColor: "#296157",
             }}
-            onPress={() => sheetRef.current?.open()}
+            onPress={() => console.log("Pressed")}
           >
             <Text style={{ color: "#296157", fontSize: 14 }}>Ver Detalhes</Text>
           </Button>
@@ -262,7 +258,7 @@ export default function SharesScreen() {
               borderWidth: 1,
               borderColor: "#296157",
             }}
-            onPress={() => sheetRef.current?.open()}
+            onPress={() => console.log("Pressed")}
           >
             <Text style={{ color: "#296157", fontSize: 14 }}>Ver Detalhes</Text>
           </Button>
@@ -345,7 +341,7 @@ export default function SharesScreen() {
               borderWidth: 1,
               borderColor: "#296157",
             }}
-            onPress={() => sheetRef.current?.open()}
+            onPress={() => console.log("Pressed")}
           >
             <Text style={{ color: "#296157", fontSize: 14 }}>Ver Detalhes</Text>
           </Button>
@@ -358,118 +354,6 @@ export default function SharesScreen() {
           </Button>
         </View>
       </View>
-      <BottomSheet ref={sheetRef} height={600}>
-        <View style={{ padding: 20 }}>
-          <Text
-            style={{
-              fontSize: 24,
-              fontWeight: "bold",
-              marginBottom: 20,
-              color: "#235c5b",
-            }}
-          >
-            Detalhes da Ação
-          </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "bold",
-              marginBottom: 20,
-            }}
-          >
-            BTG Pactual
-          </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "bold",
-              marginBottom: 20,
-            }}
-          >
-            Último: {formatter.format(22.0)}
-          </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "bold",
-              marginBottom: 20,
-            }}
-          >
-            Mínimo: {formatter.format(20.4)}
-          </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "bold",
-              marginBottom: 20,
-            }}
-          >
-            Máximo: {formatter.format(22.0)}
-          </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "bold",
-              marginBottom: 20,
-            }}
-          >
-            Variação: +7,84%
-          </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "bold",
-              marginBottom: 20,
-            }}
-          >
-            Volume: {formatter.format(1000000)}
-          </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "bold",
-              marginBottom: 20,
-            }}
-          >
-            Data: {new Date().toLocaleDateString("pt-BR")}
-          </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "bold",
-              marginBottom: 20,
-            }}
-          >
-            Hora: {new Date().toLocaleTimeString("pt-BR")}
-          </Text>
-          <Button
-            mode="contained"
-            style={{
-              backgroundColor: "#024d40",
-              width: "100%",
-              height: 40,
-              marginTop: 20,
-            }}
-            onPress={() => console.log("Pressed")}
-          >
-            Adquirir
-          </Button>
-          <Button
-            mode="outlined"
-            style={{
-              width: "100%",
-              height: 40,
-              marginTop: 10,
-              borderColor: "#296157",
-            }}
-            onPress={() => sheetRef.current?.close()}
-          >
-            <Text style={{ color: "#296157", fontSize: 14 }}>
-              Fechar Detalhes
-            </Text>
-          </Button>
-        </View>
-      </BottomSheet>
     </View>
   );
 }

@@ -11,7 +11,9 @@
     "lint": "expo lint"
   },
   "dependencies": {
+    "@devvie/bottom-sheet": "^0.4.3",
     "@expo/vector-icons": "^14.1.0",
+    "@gorhom/bottom-sheet": "^5.1.4",
     "@react-native-vector-icons/common": "^11.0.0",
     "@react-native-vector-icons/material-design-icons": "^7.4.47",
     "@react-navigation/bottom-tabs": "^7.3.10",

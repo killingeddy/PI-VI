@@ -1,81 +1,48 @@
-import { useRouter } from "expo-router";
-import React from "react";
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { Link, useRouter } from "expo-router";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 
-export default function Register() {
+export default function Login() {
   // const [email, setEmail] = React.useState("");
   // const [password, setPassword] = React.useState("");
 
   // const [loading, setLoading] = React.useState(false);
   // const [error, setError] = React.useState(null);
 
-    const router = useRouter();
+  const router = useRouter();
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
+      <Image
+        source={require("@/assets/images/logo.png")}
+        resizeMode="cover"
+        style={{
+          width: "100%",
+          height: 400,
+          marginTop: -10,
+        }}
+      />
       <Text
         style={{
           fontSize: 30,
           fontWeight: "bold",
           color: "#235c5b",
           textAlign: "center",
-          marginTop: 20,
+          marginTop: 0,
         }}
       >
-        Cadastre-se
+        Bem-vindo(a) ao Finara!
       </Text>
-      <TextInput
-        label="Nome"
-        mode="outlined"
+      <Text
         style={{
-          marginTop: 20,
-          width: "90%",
-          alignSelf: "center",
+          fontSize: 20,
+          color: "#235c5b",
+          textAlign: "center",
+          marginTop: 10,
         }}
-        theme={{
-          colors: {
-            primary: "#000",
-            underlineColor: "transparent",
-            background: "#fff",
-          },
-          roundness: 50,
-        }}
-      />
-      <TextInput
-        label="Profissão"
-        mode="outlined"
-        style={{
-          marginTop: 20,
-          width: "90%",
-          alignSelf: "center",
-        }}
-        theme={{
-          colors: {
-            primary: "#000",
-            underlineColor: "transparent",
-            background: "#fff",
-          },
-          roundness: 50,
-        }}
-      />
-      <TextInput
-        label="Data de nascimento"
-        mode="outlined"
-        style={{
-          marginTop: 20,
-          width: "90%",
-          alignSelf: "center",
-        }}
-        theme={{
-          colors: {
-            primary: "#000",
-            underlineColor: "transparent",
-            background: "#fff",
-          },
-          roundness: 50,
-        }}
-      />
+      >
+        Faça login para continuar
+      </Text>
       <TextInput
         label="Email"
         mode="outlined"
@@ -110,20 +77,26 @@ export default function Register() {
           roundness: 50,
         }}
       />
-      <Button
-        onPress={() => {}}
+      <Link
+        href="/tabs/(user)/(auth)/form"
         style={{
           marginTop: 20,
           alignSelf: "center",
           borderRadius: 50,
           width: "90%",
           backgroundColor: "#235c5b",
+          padding: 15,
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
         }}
       >
-        <Text style={{ color: "#fff" }}>Criar conta</Text>
-      </Button>
+        <Text style={{ color: "#fff", fontWeight: "bold" }}>Entrar</Text>
+      </Link>
       <Button
-        onPress={() => { router.back() }}
+        onPress={() => {
+          router.navigate("/tabs/(user)/(auth)/register");
+        }}
         style={{
           marginTop: 20,
           alignSelf: "center",
@@ -131,14 +104,12 @@ export default function Register() {
           width: "90%",
         }}
       >
-        <Text style={{ color: "#235c5b" }}>
-            Já tem uma conta?{" "}
-        </Text>
+        <Text style={{ color: "#235c5b" }}>Ainda não tem conta? </Text>
         <Text style={{ color: "#235c5b", fontWeight: "bold" }}>
-            Entre
+          Cadastre-se
         </Text>
       </Button>
-    </ScrollView>
+    </View>
   );
 }
 

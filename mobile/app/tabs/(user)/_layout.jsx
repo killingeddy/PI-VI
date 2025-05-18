@@ -24,15 +24,15 @@ export default function TabLayout() {
           default: {},
         }),
       }}
-      initialRouteName="shares"
-    > 
+      initialRouteName="(auth)"
+    >
       <Tabs.Screen
-        name="shares"
+        name="(auth)"
         options={{
-          title: "Ações",
+          title: "Perfil",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
-              name="chart-timeline-variant"
+              name="file-document-outline"
               size={24}
               color={color}
             />
@@ -41,12 +41,26 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="(user)"
+        name="wallet"
         options={{
-          title: "Perfil",
+          title: "Carteira",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
-              name="account-circle-outline"
+              name="wallet-outline"
+              size={24}
+              color={color}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="user_shares"
+        options={{
+          title: "Recomendações",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="account-star-outline"
               size={24}
               color={color}
             />
