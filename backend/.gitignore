@@ -1,0 +1,18 @@
+# Dependências
+node_modules
+
+# Ambiente virtual Python
+python/venv
+
+# Arquivos de ambiente
+.env
+
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db

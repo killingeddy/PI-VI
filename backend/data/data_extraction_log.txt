@@ -1,0 +1,10 @@
+Extracao iniciada em: 2025-05-18 20:20:26.534945
+Periodo solicitado: 1y
+Numero de tickers: 10
+
+REGISTRO DE EXTRACAO:
+PETR4: OK (250 dias)
+VALE3: OK (250 dias)
+ITUB4: OK (250 dias)
+BBDC4: OK (250 dias)
+ABEV3: OK (250 dias)
