@@ -8,8 +8,11 @@ class StockController {
         riskCategory: req.query.risk_category,
         sector: req.query.sector
       };
+
+      const limit = parseInt(req.query.limit) || 100;
+      const offset = parseInt(req.query.offset) || 0;
       
-      const stocks = await stockAnalysisService.getStocksWithFilters(filters);
+      const stocks = await stockAnalysisService.getStocksWithFilters(filters, limit, offset);
       
       res.json({
         status: 'success',

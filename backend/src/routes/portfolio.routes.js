@@ -1,20 +1,17 @@
+const portfolioController = require('../controllers/portfolioController');
 const express = require('express');
 const router = express.Router();
-const portfolioController = require('../controllers/portfolioController');
 
 // Rota para adicionar uma ação à carteira
-router.post('/:userId/stocks', (req, res) => {
-  res.json({ message: 'Adicionar ação à carteira (a ser implementado)' });
-});
+router.post('/:userId/stocks', portfolioController.addStock);
 
 // Rota para obter a carteira do usuário
-router.get('/:userId', (req, res) => {
-  res.json({ message: `Carteira do usuário ${req.params.userId} (a ser implementado)` });
-});
+router.get('/:userId', portfolioController.getPortfolioSummary);
+router.get('/:userId/stocks', portfolioController.getAllStocks);
+
+router.put('/:userId/stocks/:id', portfolioController.updateStock);
 
 // Rota para remover uma ação da carteira
-router.delete('/:userId/stocks/:symbol', (req, res) => {
-  res.json({ message: `Remover ação ${req.params.symbol} da carteira (a ser implementado)` });
-});
+router.delete('/:userId/stocks/:id', portfolioController.removeStock);
 
 module.exports = router;

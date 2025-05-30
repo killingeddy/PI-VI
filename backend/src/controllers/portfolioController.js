@@ -4,7 +4,7 @@ const Stock = require('../models/stockModel');
 class PortfolioController {
   static async getAllStocks(req, res) {
     try {
-      const { userId } = req.user;
+      const { userId } = req.params;
       
       const portfolio = await Portfolio.getUserPortfolio(userId);
       
@@ -23,7 +23,7 @@ class PortfolioController {
   
   static async getPortfolioSummary(req, res) {
     try {
-      const { userId } = req.user;
+      const { userId } = req.params;
       
       const portfolio = await Portfolio.getUserPortfolio(userId);
       
@@ -91,7 +91,7 @@ class PortfolioController {
   
   static async addStock(req, res) {
     try {
-      const { userId } = req.user;
+      const { userId } = req.params;
       const { stockId, symbol, quantity, purchasePrice, purchaseDate } = req.body;
       
       if (!purchasePrice || !quantity || quantity <= 0) {
@@ -141,7 +141,7 @@ class PortfolioController {
   
   static async updateStock(req, res) {
     try {
-      const { userId } = req.user;
+      const { userId } = req.params;
       const { id } = req.params;
       const { quantity } = req.body;
       
@@ -177,7 +177,7 @@ class PortfolioController {
   
   static async removeStock(req, res) {
     try {
-      const { userId } = req.user;
+      const { userId } = req.params;
       const { id } = req.params;
       
       const result = await Portfolio.removeStock(userId, id);

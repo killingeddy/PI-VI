@@ -18,7 +18,8 @@ class StockAnalysisService {
       
       // Obter dados históricos dos últimos 252 dias úteis (1 ano)
       const pricesResult = await db.query(
-        `SELECT date, adj_close, volume FROM stock_prices 
+        `SELECT date, volume 
+        FROM stock_prices 
          WHERE stock_id = $1 
          ORDER BY date DESC 
          LIMIT 252`,
@@ -66,9 +67,9 @@ class StockAnalysisService {
         avgDailyReturn,
         recentTrend,
         priceHistory: prices.map(p => ({
-          date: p.date,
-          price: p.adj_close,
-          volume: p.volume
+          date: sp.date,
+          price: sp.adj_close,
+          volume: sp.volume
         }))
       };
     } catch (error) {
@@ -171,15 +172,14 @@ class StockAnalysisService {
   }
   
   // Busca ações com base em filtros
-  async getStocksWithFilters(filters = {}) {
+  async getStocksWithFilters(filters = {}, limit = 100, offset = 0) {
     try {
       let query = `
-        SELECT s.id, s.symbol, s.company_name, s.sector, s.risk_category, s.dividend_yield,
-               sp.adj_close as latest_price,
+        SELECT s.id, s.symbol, s.adj_close as latest_price,
                sp.date as price_date
         FROM stocks s
         LEFT JOIN (
-          SELECT DISTINCT ON (stock_id) stock_id, adj_close, date
+          SELECT DISTINCT ON (stock_id) stock_id, date
           FROM stock_prices
           ORDER BY stock_id, date DESC
         ) sp ON s.id = sp.stock_id
@@ -202,10 +202,15 @@ class StockAnalysisService {
         queryParams.push(filters.sector);
         paramCount++;
       }
-      
+
       // Ordenação
       query += ` ORDER BY s.symbol ASC`;
-      
+
+      // Limite e offset
+      query += ` LIMIT $${paramCount} OFFSET $${paramCount + 1}`;
+      queryParams.push(limit, offset);
+      paramCount += 2;
+
       const result = await db.query(query, queryParams);
       return result.rows;
     } catch (error) {

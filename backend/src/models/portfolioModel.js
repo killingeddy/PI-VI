@@ -4,8 +4,7 @@ class Portfolio {
   static async getUserPortfolio(userId) {
     const result = await db.query(
       `SELECT p.id, p.quantity, p.purchase_price, p.purchase_date,
-        s.id as stock_id, s.symbol, s.company_name, s.risk_level, 
-        s.risk_description, s.volatility, s.max_drawdown, s.beta, s.liquidity
+        s.id as stock_id, s.symbol
        FROM portfolios p
        JOIN stocks s ON p.stock_id = s.id
        WHERE p.user_id = $1`,

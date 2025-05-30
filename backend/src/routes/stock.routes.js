@@ -3,13 +3,9 @@ const router = express.Router();
 const stockController = require('../controllers/stockController');
 
 // Rota para obter todas as ações
-router.get('/', (req, res) => {
-  res.json({ message: 'Lista de ações (a ser implementado)' });
-});
+router.get('/', stockController.getAllStocks);
 
 // Rota para obter dados de uma ação específica
-router.get('/:symbol', (req, res) => {
-  res.json({ message: `Detalhes da ação ${req.params.symbol} (a ser implementado)` });
-});
+router.get('/:symbol', stockController.getStockBySymbol);
 
 module.exports = router;
