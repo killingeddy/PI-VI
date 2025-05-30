@@ -3,6 +3,6 @@ const router = express.Router();
 const recommendationController = require('../controllers/recommendationController');
 
 // Rota para obter recomendações personalizadas para o usuário
-router.get('/', recommendationController.getRecommendations);
+router.get('/:userId', recommendationController.getRecommendations);
 
 module.exports = router;

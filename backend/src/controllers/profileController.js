@@ -4,7 +4,7 @@ const InvestorProfileService = require('../services/investorProfileService');
 class ProfileController {
   static async getProfile(req, res) {
     try {
-      const { userId } = req.user;
+      const { userId } = req.params;
       
       const profile = await InvestorProfile.getByUserId(userId);
       
@@ -30,7 +30,7 @@ class ProfileController {
   
   static async saveProfile(req, res) {
     try {
-      const { userId } = req.user;
+      const { userId } = req.params;
       const { 
         risk_tolerance, 
         investment_horizon, 

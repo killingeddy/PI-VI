@@ -3,7 +3,7 @@ const RecommendationService = require('../services/recommendationService');
 class RecommendationController {
   static async getRecommendations(req, res) {
     try {
-      const { userId } = req.user;
+      const { userId } = req.params;
       
       const recommendationService = new RecommendationService();
       const recommendations = await recommendationService.getRecommendationsForUser(userId);

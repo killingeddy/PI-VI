@@ -3,13 +3,9 @@ const router = express.Router();
 const profileController = require('../controllers/profileController');
 
 // Rota para salvar o perfil do investidor
-router.post('/', (req, res) => {
-  res.json({ message: 'Salvar perfil de investidor (a ser implementado)' });
-});
+router.post('/:userId', profileController.saveProfile);
 
 // Rota para obter o perfil do investidor
-router.get('/:userId', (req, res) => {
-  res.json({ message: `Perfil do investidor ${req.params.userId} (a ser implementado)` });
-});
+router.get('/:userId', profileController.getProfile);
 
 module.exports = router;
