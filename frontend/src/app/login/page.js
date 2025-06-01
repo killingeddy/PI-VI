@@ -31,13 +31,13 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">Entrar</CardTitle>
+          <CardTitle className="text-2xl font-bold text-[var(--color-teal-0)]">Entrar</CardTitle>
           <CardDescription>
             Entre com suas informações para acessar sua conta
           </CardDescription>
         </CardHeader>
         <form>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 text-[var(--color-teal-0)]">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -56,7 +56,9 @@ export default function LoginPage() {
                   href="/"
                   className="text-sm text-primary underline-offset-4 hover:underline"
                 >
+                  <p className="text-[var(--color-teal-0)]">
                   Esqueceu sua senha?
+                  </p>
                 </Link>
               </div>
               <div className="relative">
@@ -94,17 +96,19 @@ export default function LoginPage() {
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 mt-4">
             <Link href="/dashboard" className="w-full">
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full red bg-[var(--color-teal-1)]">
                 Entrar
               </Button>
             </Link>
-            <div className="text-center text-sm">
+            <div className="text-center text-sm flex gap-2">
               Ainda não possui uma conta?{" "}
               <Link
                 href="/register"
                 className="text-primary underline-offset-4 hover:underline"
               >
+                <p className="text-[var(--color-teal-2)]">
                 Cadastrar-se
+                </p>
               </Link>
             </div>
           </CardFooter>

@@ -21,37 +21,37 @@ export default function AnalysisPage() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">
+        <h1 className="text-3xl font-bold tracking-tight text-[var(--color-teal-0)]">
           Investment Analysis
         </h1>
         <div className="flex items-center gap-2">
           <Select defaultValue="1y">
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] text-[var(--color-teal-1)]">
               <SelectValue placeholder="Time Period" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="1m">1 Month</SelectItem>
-              <SelectItem value="3m">3 Months</SelectItem>
-              <SelectItem value="6m">6 Months</SelectItem>
-              <SelectItem value="1y">1 Year</SelectItem>
-              <SelectItem value="3y">3 Years</SelectItem>
-              <SelectItem value="5y">5 Years</SelectItem>
-              <SelectItem value="all">All Time</SelectItem>
+              <SelectItem value="1m" className="text-[var(--color-teal-1)]">1 Month</SelectItem>
+              <SelectItem value="3m" className="text-[var(--color-teal-1)]">3 Months</SelectItem>
+              <SelectItem value="6m" className="text-[var(--color-teal-1)]">6 Months</SelectItem>
+              <SelectItem value="1y" className="text-[var(--color-teal-1)]">1 Year</SelectItem>
+              <SelectItem value="3y" className="text-[var(--color-teal-1)]">3 Years</SelectItem>
+              <SelectItem value="5y" className="text-[var(--color-teal-1)]">5 Years</SelectItem>
+              <SelectItem value="all" className="text-[var(--color-teal-1)]">All Time</SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="outline">Export</Button>
+          <Button variant="outline" className="text-[var(--color-teal-1)]">Export</Button>
         </div>
       </div>
       <Tabs defaultValue="performance" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="performance">Performance</TabsTrigger>
-          <TabsTrigger value="allocation">Allocation</TabsTrigger>
-          <TabsTrigger value="comparison">Comparison</TabsTrigger>
-          <TabsTrigger value="risk">Risk Analysis</TabsTrigger>
+          <TabsTrigger value="performance" className="text-[var(--color-teal-4)]">Performance</TabsTrigger>
+          <TabsTrigger value="allocation" className="text-[var(--color-teal-4)]">Allocation</TabsTrigger>
+          <TabsTrigger value="comparison" className="text-[var(--color-teal-4)]">Comparison</TabsTrigger>
+          <TabsTrigger value="risk" className="text-[var(--color-teal-4)]">Risk Analysis</TabsTrigger>
         </TabsList>
         <TabsContent value="performance" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <Card>
+            <Card className="text-[var(--color-teal-1)]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Total Return
@@ -64,7 +64,7 @@ export default function AnalysisPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="text-[var(--color-teal-1)]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Annualized Return
@@ -77,7 +77,7 @@ export default function AnalysisPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="text-[var(--color-teal-1)]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Volatility
@@ -90,7 +90,7 @@ export default function AnalysisPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="text-[var(--color-teal-1)]"> 
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Sharpe Ratio
@@ -105,7 +105,7 @@ export default function AnalysisPage() {
             </Card>
           </div>
           <Card>
-            <CardHeader>
+            <CardHeader className="text-[var(--color-teal-2)]">
               <CardTitle>Portfolio Performance</CardTitle>
               <CardDescription>
                 Historical performance of your portfolio compared to benchmarks
@@ -122,7 +122,7 @@ export default function AnalysisPage() {
           </Card>
           <div className="grid gap-4 md:grid-cols-2">
             <Card>
-              <CardHeader>
+              <CardHeader className="text-[var(--color-teal-2)]">
                 <CardTitle>Monthly Returns</CardTitle>
                 <CardDescription>Monthly performance breakdown</CardDescription>
               </CardHeader>
@@ -136,7 +136,7 @@ export default function AnalysisPage() {
               </CardContent>
             </Card>
             <Card>
-              <CardHeader>
+              <CardHeader className="text-[var(--color-teal-2)]">
                 <CardTitle>Top Contributors</CardTitle>
                 <CardDescription>
                   Assets with the highest contribution to returns
@@ -145,31 +145,31 @@ export default function AnalysisPage() {
               <CardContent>
                 <div className="space-y-4">
                   <div className="flex items-center">
-                    <div className="font-medium">AAPL</div>
+                    <div className="font-medium text-[var(--color-teal-1)]">AAPL</div>
                     <div className="ml-auto font-medium text-green-500">
                       +4.2%
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <div className="font-medium">BTC</div>
+                    <div className="font-medium text-[var(--color-teal-1)]">BTC</div>
                     <div className="ml-auto font-medium text-green-500">
                       +3.8%
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <div className="font-medium">MSFT</div>
+                    <div className="font-medium text-[var(--color-teal-1)]">MSFT</div>
                     <div className="ml-auto font-medium text-green-500">
                       +2.5%
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <div className="font-medium">TSLA</div>
+                    <div className="font-medium text-[var(--color-teal-1)]">TSLA</div>
                     <div className="ml-auto font-medium text-green-500">
                       +1.9%
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <div className="font-medium">VNQ</div>
+                    <div className="font-medium text-[var(--color-teal-1)]">VNQ</div>
                     <div className="ml-auto font-medium text-red-500">
                       -0.8%
                     </div>
@@ -182,7 +182,7 @@ export default function AnalysisPage() {
         <TabsContent value="allocation" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
             <Card>
-              <CardHeader>
+              <CardHeader className="text-[var(--color-teal-2)]">
                 <CardTitle>Asset Allocation</CardTitle>
                 <CardDescription>
                   Current distribution of your portfolio by asset class
@@ -199,43 +199,43 @@ export default function AnalysisPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-                      <span className="text-sm">Stocks</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Stocks</span>
                     </div>
-                    <span className="text-sm font-medium">65%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">65%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-green-500"></div>
-                      <span className="text-sm">Bonds</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Bonds</span>
                     </div>
-                    <span className="text-sm font-medium">15%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">15%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-                      <span className="text-sm">Real Estate</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Real Estate</span>
                     </div>
-                    <span className="text-sm font-medium">10%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">10%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-purple-500"></div>
-                      <span className="text-sm">Crypto</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Crypto</span>
                     </div>
-                    <span className="text-sm font-medium">5%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">5%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-gray-500"></div>
-                      <span className="text-sm">Cash</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Cash</span>
                     </div>
-                    <span className="text-sm font-medium">5%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">5%</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
             <Card>
-              <CardHeader>
+              <CardHeader className="text-[var(--color-teal-2)]">
                 <CardTitle>Sector Allocation</CardTitle>
                 <CardDescription>
                   Distribution of your stock investments by sector
@@ -252,51 +252,51 @@ export default function AnalysisPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-                      <span className="text-sm">Technology</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Technology</span>
                     </div>
-                    <span className="text-sm font-medium">40%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">40%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-green-500"></div>
-                      <span className="text-sm">Healthcare</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Healthcare</span>
                     </div>
-                    <span className="text-sm font-medium">15%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">15%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-                      <span className="text-sm">Financial Services</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Financial Services</span>
                     </div>
-                    <span className="text-sm font-medium">12%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">12%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-purple-500"></div>
-                      <span className="text-sm">Consumer Discretionary</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Consumer Discretionary</span>
                     </div>
-                    <span className="text-sm font-medium">10%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">10%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-red-500"></div>
-                      <span className="text-sm">Energy</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Energy</span>
                     </div>
-                    <span className="text-sm font-medium">8%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">8%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-gray-500"></div>
-                      <span className="text-sm">Other Sectors</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Other Sectors</span>
                     </div>
-                    <span className="text-sm font-medium">15%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">15%</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
           <Card>
-            <CardHeader>
+            <CardHeader className="text-[var(--color-teal-2)]">
               <CardTitle>Geographic Distribution</CardTitle>
               <CardDescription>
                 Distribution of your investments by geographic region
@@ -313,44 +313,44 @@ export default function AnalysisPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-                    <span className="text-sm">North America</span>
+                    <span className="text-sm text-[var(--color-teal-2)]">North America</span>
                   </div>
-                  <span className="text-sm font-medium">65%</span>
+                  <span className="text-sm font-medium text-[var(--color-teal-2)]">65%</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-green-500"></div>
-                    <span className="text-sm">Europe</span>
+                    <span className="text-sm text-[var(--color-teal-2)]">Europe</span>
                   </div>
-                  <span className="text-sm font-medium">15%</span>
+                  <span className="text-sm font-medium text-[var(--color-teal-2)]">15%</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-                    <span className="text-sm">Asia Pacific</span>
+                    <span className="text-sm text-[var(--color-teal-2)]">Asia Pacific</span>
                   </div>
-                  <span className="text-sm font-medium">12%</span>
+                  <span className="text-sm font-medium text-[var(--color-teal-2)]">12%</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-purple-500"></div>
-                    <span className="text-sm">Emerging Markets</span>
+                    <span className="text-sm text-[var(--color-teal-2)]">Emerging Markets</span>
                   </div>
-                  <span className="text-sm font-medium">5%</span>
+                  <span className="text-sm font-medium text-[var(--color-teal-2)]">5%</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-red-500"></div>
-                    <span className="text-sm">Latin America</span>
+                    <span className="text-sm text-[var(--color-teal-2)]">Latin America</span>
                   </div>
-                  <span className="text-sm font-medium">2%</span>
+                  <span className="text-sm font-medium text-[var(--color-teal-2)]">2%</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-gray-500"></div>
-                    <span className="text-sm">Other Regions</span>
+                    <span className="text-sm text-[var(--color-teal-2)]">Other Regions</span>
                   </div>
-                  <span className="text-sm font-medium">1%</span>
+                  <span className="text-sm font-medium text-[var(--color-teal-2)]">1%</span>
                 </div>
               </div>
             </CardContent>
@@ -358,7 +358,7 @@ export default function AnalysisPage() {
         </TabsContent>
         <TabsContent value="comparison" className="space-y-4">
           <Card>
-            <CardHeader>
+            <CardHeader className="text-[var(--color-teal-2)]">
               <CardTitle>Benchmark Comparison</CardTitle>
               <CardDescription>
                 Performance of your portfolio compared to market benchmarks
@@ -375,7 +375,7 @@ export default function AnalysisPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-primary"></div>
-                    <span className="text-sm">Your Portfolio</span>
+                    <span className="text-sm text-[var(--color-teal-1)]">Your Portfolio</span>
                   </div>
                   <span className="text-sm font-medium text-green-500">
                     +15.4%
@@ -384,7 +384,7 @@ export default function AnalysisPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-                    <span className="text-sm">S&P 500</span>
+                    <span className="text-sm text-[var(--color-teal-1)]">S&P 500</span>
                   </div>
                   <span className="text-sm font-medium text-green-500">
                     +10.2%
@@ -393,7 +393,7 @@ export default function AnalysisPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-green-500"></div>
-                    <span className="text-sm">Nasdaq Composite</span>
+                    <span className="text-sm text-[var(--color-teal-1)]">Nasdaq Composite</span>
                   </div>
                   <span className="text-sm font-medium text-green-500">
                     +12.8%
@@ -402,7 +402,7 @@ export default function AnalysisPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-                    <span className="text-sm">
+                    <span className="text-sm text-[var(--color-teal-1)]">
                       Dow Jones Industrial Average
                     </span>
                   </div>
@@ -413,7 +413,7 @@ export default function AnalysisPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-purple-500"></div>
-                    <span className="text-sm">
+                    <span className="text-sm text-[var(--color-teal-1)]">
                       Bloomberg US Aggregate Bond Index
                     </span>
                   </div>
@@ -426,14 +426,14 @@ export default function AnalysisPage() {
           </Card>
           <div className="grid gap-4 md:grid-cols-2">
             <Card>
-              <CardHeader>
+              <CardHeader className="text-[var(--color-teal-2)]">
                 <CardTitle>Performance Metrics</CardTitle>
                 <CardDescription>
                   Key performance metrics compared to benchmarks
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-4 text-[var(--color-teal-3)]">
                   <div>
                     <div className="mb-1 flex items-center justify-between">
                       <span className="text-sm font-medium">
@@ -442,7 +442,7 @@ export default function AnalysisPage() {
                       <span className="text-sm font-medium">12.8%</span>
                     </div>
                     <div className="h-2 w-full rounded-full bg-muted">
-                      <div className="h-full w-[75%] rounded-full bg-primary"></div>
+                      <div className="h-full w-[75%] rounded-full bg-[var(--color-teal-4)]"></div>
                     </div>
                     <div className="mt-1 text-xs text-muted-foreground">
                       vs. S&P 500: 10.2%
@@ -454,7 +454,7 @@ export default function AnalysisPage() {
                       <span className="text-sm font-medium">1.2</span>
                     </div>
                     <div className="h-2 w-full rounded-full bg-muted">
-                      <div className="h-full w-[65%] rounded-full bg-primary"></div>
+                      <div className="h-full w-[65%] rounded-full bg-[var(--color-teal-4)]"></div>
                     </div>
                     <div className="mt-1 text-xs text-muted-foreground">
                       vs. S&P 500: 1.0
@@ -468,7 +468,7 @@ export default function AnalysisPage() {
                       <span className="text-sm font-medium">-12.5%</span>
                     </div>
                     <div className="h-2 w-full rounded-full bg-muted">
-                      <div className="h-full w-[40%] rounded-full bg-primary"></div>
+                      <div className="h-full w-[40%] rounded-full bg-[var(--color-teal-4)]"></div>
                     </div>
                     <div className="mt-1 text-xs text-muted-foreground">
                       vs. S&P 500: -15.2%
@@ -480,7 +480,7 @@ export default function AnalysisPage() {
                       <span className="text-sm font-medium">0.85</span>
                     </div>
                     <div className="h-2 w-full rounded-full bg-muted">
-                      <div className="h-full w-[85%] rounded-full bg-primary"></div>
+                      <div className="h-full w-[85%] rounded-full bg-[var(--color-teal-4)]"></div>
                     </div>
                     <div className="mt-1 text-xs text-muted-foreground">
                       vs. S&P 500: 1.0
@@ -490,7 +490,7 @@ export default function AnalysisPage() {
               </CardContent>
             </Card>
             <Card>
-              <CardHeader>
+              <CardHeader className="text-[var(--color-teal-2)]">
                 <CardTitle>Peer Comparison</CardTitle>
                 <CardDescription>
                   How your portfolio compares to similar investors
@@ -505,25 +505,25 @@ export default function AnalysisPage() {
                 </div>
                 <div className="mt-4 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm">Your Portfolio</span>
+                    <span className="text-sm text-[var(--color-teal-1)]">Your Portfolio</span>
                     <span className="text-sm font-medium text-green-500">
                       +15.4%
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm">Top 10% Investors</span>
+                    <span className="text-sm text-[var(--color-teal-1)]">Top 10% Investors</span>
                     <span className="text-sm font-medium text-green-500">
                       +18.2%
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm">Average Investor</span>
+                    <span className="text-sm text-[var(--color-teal-1)]">Average Investor</span>
                     <span className="text-sm font-medium text-green-500">
                       +9.8%
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm">Bottom 10% Investors</span>
+                    <span className="text-sm text-[var(--color-teal-1)]">Bottom 10% Investors</span>
                     <span className="text-sm font-medium text-green-500">
                       +3.5%
                     </span>
@@ -535,7 +535,7 @@ export default function AnalysisPage() {
         </TabsContent>
         <TabsContent value="risk" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <Card>
+            <Card className="text-[var(--color-teal-1)]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Volatility
@@ -548,7 +548,7 @@ export default function AnalysisPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="text-[var(--color-teal-1)]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Beta</CardTitle>
               </CardHeader>
@@ -559,7 +559,7 @@ export default function AnalysisPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="text-[var(--color-teal-1)]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Max Drawdown
@@ -570,7 +570,7 @@ export default function AnalysisPage() {
                 <p className="text-xs text-muted-foreground">Last 12 months</p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="text-[var(--color-teal-1)]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Value at Risk (95%)
@@ -582,7 +582,7 @@ export default function AnalysisPage() {
               </CardContent>
             </Card>
           </div>
-          <Card>
+          <Card className="text-[var(--color-teal-2)]">
             <CardHeader>
               <CardTitle>Risk Analysis</CardTitle>
               <CardDescription>
@@ -601,7 +601,7 @@ export default function AnalysisPage() {
           <div className="grid gap-4 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Risk Contribution</CardTitle>
+                <CardTitle className="text-[var(--color-teal-2)]">Risk Contribution</CardTitle>
                 <CardDescription>
                   How each asset contributes to overall portfolio risk
                 </CardDescription>
@@ -617,44 +617,44 @@ export default function AnalysisPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-                      <span className="text-sm">TSLA</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">TSLA</span>
                     </div>
-                    <span className="text-sm font-medium">35%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">35%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-green-500"></div>
-                      <span className="text-sm">BTC</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">BTC</span>
                     </div>
-                    <span className="text-sm font-medium">25%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">25%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-                      <span className="text-sm">AAPL</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">AAPL</span>
                     </div>
-                    <span className="text-sm font-medium">15%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">15%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-purple-500"></div>
-                      <span className="text-sm">MSFT</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">MSFT</span>
                     </div>
-                    <span className="text-sm font-medium">10%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">10%</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-gray-500"></div>
-                      <span className="text-sm">Other Assets</span>
+                      <span className="text-sm text-[var(--color-teal-1)]">Other Assets</span>
                     </div>
-                    <span className="text-sm font-medium">15%</span>
+                    <span className="text-sm font-medium text-[var(--color-teal-1)]">15%</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle>Stress Test Scenarios</CardTitle>
+                <CardTitle className="text-[var(--color-teal-2)]">Stress Test Scenarios</CardTitle>
                 <CardDescription>
                   How your portfolio might perform in different market scenarios
                 </CardDescription>
@@ -663,7 +663,7 @@ export default function AnalysisPage() {
                 <div className="space-y-4">
                   <div>
                     <div className="mb-1 flex items-center justify-between">
-                      <span className="text-sm font-medium">
+                      <span className="text-sm font-medium text-[var(--color-teal-1)]">
                         Market Crash (-30%)
                       </span>
                       <span className="text-sm font-medium text-red-500">
@@ -676,7 +676,7 @@ export default function AnalysisPage() {
                   </div>
                   <div>
                     <div className="mb-1 flex items-center justify-between">
-                      <span className="text-sm font-medium">
+                      <span className="text-sm font-medium text-[var(--color-teal-1)]">
                         Tech Sector Decline (-20%)
                       </span>
                       <span className="text-sm font-medium text-red-500">
@@ -689,7 +689,7 @@ export default function AnalysisPage() {
                   </div>
                   <div>
                     <div className="mb-1 flex items-center justify-between">
-                      <span className="text-sm font-medium">
+                      <span className="text-sm font-medium text-[var(--color-teal-1)]">
                         Interest Rate Hike (+1%)
                       </span>
                       <span className="text-sm font-medium text-red-500">
@@ -702,7 +702,7 @@ export default function AnalysisPage() {
                   </div>
                   <div>
                     <div className="mb-1 flex items-center justify-between">
-                      <span className="text-sm font-medium">
+                      <span className="text-sm font-medium text-[var(--color-teal-1)]">
                         Inflation Surge (+3%)
                       </span>
                       <span className="text-sm font-medium text-red-500">
@@ -715,7 +715,7 @@ export default function AnalysisPage() {
                   </div>
                   <div>
                     <div className="mb-1 flex items-center justify-between">
-                      <span className="text-sm font-medium">Economic Boom</span>
+                      <span className="text-sm font-medium text-[var(--color-teal-1)]">Economic Boom</span>
                       <span className="text-sm font-medium text-green-500">
                         +12.5%
                       </span>

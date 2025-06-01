@@ -30,13 +30,13 @@ export default function RegisterPage() {
     <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">Criar uma conta</CardTitle>
+          <CardTitle className="text-2xl font-bold text-[var(--color-teal-0)]">Criar uma conta</CardTitle>
           <CardDescription>
             Entre com suas informações para criar uma conta
           </CardDescription>
         </CardHeader>
         <form>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 text-[var(--color-teal-0)]">
             <div className="space-y-2">
               <Label htmlFor="name">Nome</Label>
               <Input
@@ -89,17 +89,19 @@ export default function RegisterPage() {
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 mt-4">
             <Link href="/dashboard" className="w-full">
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full bg-[var(--color-teal-1)]">
               Criar conta
             </Button>
             </Link>
-            <div className="text-center text-sm">
+            <div className="text-center text-sm flex gap-2">
               Já possui um cadastro?{" "}
               <Link
                 href="/login"
                 className="text-primary underline-offset-4 hover:underline"
               >
+                <p className="text-[var(--color-teal-2)]">
                 Entrar
+                </p>
               </Link>
             </div>
           </CardFooter>

@@ -25,9 +25,9 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-[var(--color-teal-0)]">Dashboard</h1>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="h-8 gap-1">
+          <Button variant="outline" size="sm" className="h-8 gap-1 bg-[var(--color-teal-1)] text-[var(--background)]">
             <PlusCircle className="h-3.5 w-3.5" />
             <span>Adicionar Transação</span>
           </Button>
@@ -35,13 +35,13 @@ export default function DashboardPage() {
       </div>
       <Tabs defaultValue="geral" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="geral">Geral</TabsTrigger>
-          <TabsTrigger value="analises">Análises</TabsTrigger>
-          <TabsTrigger value="relatorios">Relatórios</TabsTrigger>
+          <TabsTrigger value="geral" className="text-[var(--color-teal-4)]">Geral</TabsTrigger>
+          <TabsTrigger value="analises" className="text-[var(--color-teal-4)]">Análises</TabsTrigger>
+          <TabsTrigger value="relatorios" className="text-[var(--color-teal-4)]">Relatórios</TabsTrigger>
         </TabsList>
         <TabsContent value="geral" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <Card>
+            <Card className="text-[var(--color-teal-1)]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Saldo Total
@@ -59,7 +59,7 @@ export default function DashboardPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="text-[var(--color-teal-1)]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Investimentos
@@ -77,7 +77,7 @@ export default function DashboardPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="text-[var(--color-teal-1)]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Dinheiro</CardTitle>
                 <CreditCard className="h-4 w-4 text-muted-foreground" />
@@ -93,7 +93,7 @@ export default function DashboardPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="text-[var(--color-teal-1)]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Investimentos Totais
@@ -113,8 +113,8 @@ export default function DashboardPage() {
             </Card>
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-            <Card className="lg:col-span-4">
-              <CardHeader>
+            <Card className="lg:col-span-4 bg-[var(--background)]">
+              <CardHeader className="text-[var(--color-teal-2)]">
                 <CardTitle>Performance do Investimento</CardTitle>
               </CardHeader>
               <CardContent className="pl-2">
@@ -126,8 +126,8 @@ export default function DashboardPage() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="lg:col-span-3">
-              <CardHeader>
+            <Card className="lg:col-span-3 bg-[var(--background)]">
+              <CardHeader className="text-[var(--color-teal-2)]">
                 <CardTitle>Últimas Transações</CardTitle>
                 <CardDescription>
                   Você realizou 3 transações recentemente
@@ -140,7 +140,7 @@ export default function DashboardPage() {
                       <ArrowUpIcon className="h-5 w-5 text-green-500" />
                     </div>
                     <div className="ml-4 space-y-1">
-                      <p className="text-sm font-medium leading-none">
+                      <p className="text-sm font-medium leading-none text-[var(--color-teal-1)]">
                         Conta de energia
                       </p>
                       <p className="text-sm text-muted-foreground">
@@ -156,7 +156,7 @@ export default function DashboardPage() {
                       <ArrowDownIcon className="h-5 w-5 text-red-500" />
                     </div>
                     <div className="ml-4 space-y-1">
-                      <p className="text-sm font-medium leading-none">
+                      <p className="text-sm font-medium leading-none text-[var(--color-teal-1)]">
                         Aluguel
                       </p>
                       <p className="text-sm text-muted-foreground">
@@ -172,7 +172,7 @@ export default function DashboardPage() {
                       <ArrowUpIcon className="h-5 w-5 text-green-500" />
                     </div>
                     <div className="ml-4 space-y-1">
-                      <p className="text-sm font-medium leading-none">
+                      <p className="text-sm font-medium leading-none text-[var(--color-teal-1)]">
                         Salário
                       </p>
                       <p className="text-sm text-muted-foreground">

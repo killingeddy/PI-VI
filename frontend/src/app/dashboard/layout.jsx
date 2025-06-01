@@ -108,9 +108,9 @@ export default function DashboardLayout({ children }) {
             </nav>
           </SheetContent>
         </Sheet>
-        <Link href="/" className="flex items-center gap-2 font-semibold">
+        <Link href="/" className="flex items-center gap-2 font-semibold text-[var(--color-teal-0)]">
           <BarChart3 className="h-6 w-6" />
-          <span className="text-lg font-bold hidden md:inline-block">
+          <span className="text-lg font-bold hidden md:inline-block text-[var(--color-teal-0)]">
             Projeto Interdisciplinar
           </span>
         </Link>
