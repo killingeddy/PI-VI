@@ -18,7 +18,7 @@ class StockAnalysisService {
       
       // Obter dados históricos dos últimos 252 dias úteis (1 ano)
       const pricesResult = await db.query(
-        `SELECT date, volume 
+        `SELECT date, adj_close, volume 
         FROM stock_prices 
          WHERE stock_id = $1 
          ORDER BY date DESC 
@@ -175,11 +175,12 @@ class StockAnalysisService {
   async getStocksWithFilters(filters = {}, limit = 100, offset = 0) {
     try {
       let query = `
-        SELECT s.id, s.symbol, s.adj_close as latest_price,
+        SELECT s.id, s.symbol, s.company_name, s.sector, s.risk_category, s.dividend_yield,
+               sp.adj_close as latest_price,
                sp.date as price_date
         FROM stocks s
         LEFT JOIN (
-          SELECT DISTINCT ON (stock_id) stock_id, date
+          SELECT DISTINCT ON (stock_id) stock_id, adj_close, date
           FROM stock_prices
           ORDER BY stock_id, date DESC
         ) sp ON s.id = sp.stock_id
