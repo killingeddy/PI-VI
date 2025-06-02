@@ -1,16 +1,47 @@
-import { Link, useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Image, StyleSheet, Text, View } from "react-native";
+import ToastManager, { Toast } from "toastify-react-native";
 import { Button, TextInput } from "react-native-paper";
+import { Link, useRouter } from "expo-router";
+import { api } from "../../../../tools/api";
+import React from "react";
 
 export default function Login() {
-  // const [email, setEmail] = React.useState("");
-  // const [password, setPassword] = React.useState("");
-
-  // const [loading, setLoading] = React.useState(false);
-  // const [error, setError] = React.useState(null);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const router = useRouter();
 
+  const handleLogin = async () => {
+    await api
+      .post("/auth/login", {
+        email,
+        password,
+      })
+      .then((response) => {
+        Toast.success("Login realizado com sucesso!");
+        AsyncStorage.setItem("userInfo", JSON.stringify(response.data.data.user));
+        console.log("User info saved:", response.data.data.user);
+        
+        router.navigate("/tabs/(user)/(auth)/form");
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+        Toast.error(error?.response?.data?.message || "Erro ao fazer login");
+      });
+  };
+
+  const checkUserLoggedIn = async () => {
+    const userInfo = await AsyncStorage.getItem("userInfo");
+    if (userInfo) {
+      router.navigate("/tabs/(user)/(auth)/form");
+    }
+  };
+
+  React.useEffect(() => {
+    checkUserLoggedIn();
+  }, []);
+  
   return (
     <View style={styles.container}>
       <Image
@@ -59,6 +90,8 @@ export default function Login() {
           },
           roundness: 50,
         }}
+        value={email}
+        onChangeText={(text) => setEmail(text)}
       />
       <TextInput
         label="Senha"
@@ -76,8 +109,11 @@ export default function Login() {
           },
           roundness: 50,
         }}
+        secureTextEntry
+        value={password}
+        onChangeText={(text) => setPassword(text)}
       />
-      <Link
+      {/* <Link
         href="/tabs/(user)/(auth)/form"
         style={{
           marginTop: 20,
@@ -91,8 +127,19 @@ export default function Login() {
           textAlign: "center",
         }}
       >
+      </Link> */}
+      <Button
+        onPress={handleLogin}
+        style={{
+          marginTop: 20,
+          alignSelf: "center",
+          borderRadius: 50,
+          width: "90%",
+          backgroundColor: "#235c5b",
+        }}
+      >
         <Text style={{ color: "#fff", fontWeight: "bold" }}>Entrar</Text>
-      </Link>
+      </Button>
       <Button
         onPress={() => {
           router.navigate("/tabs/(user)/(auth)/register");
@@ -109,6 +156,7 @@ export default function Login() {
           Cadastre-se
         </Text>
       </Button>
+      <ToastManager />
     </View>
   );
 }
