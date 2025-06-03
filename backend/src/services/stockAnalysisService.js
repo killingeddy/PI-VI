@@ -195,7 +195,6 @@ class StockAnalysisService {
             LIMIT 10
           ) sub
         ) recent_prices ON true
-        ORDER BY s.symbol, s.date DESC;
       `;
       
       const queryParams = [];
