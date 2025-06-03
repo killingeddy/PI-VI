@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,18 +13,36 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "react-toastify";
+import { api } from "@/tools/api";
 
 export default function LoginPage() {
   const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    rememberMe: false,
   });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await api
+      .post("/auth/login", formData)
+      .then((response) => {
+        localStorage.setItem(
+          "userInfo",
+          JSON.stringify(response.data.data.user)
+        );
+        router.push("/shares");
+      })
+      .catch((error) => {
+        toast.error(error.response?.data?.message || "Erro ao fazer login");
+      });
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
@@ -47,17 +64,14 @@ export default function LoginPage() {
                 placeholder="E-mail"
                 required
                 value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
               />
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Senha</Label>
-                <Link
-                  href="/"
-                  className="text-sm text-primary underline-offset-4 hover:underline"
-                >
-                  Esqueceu sua senha?
-                </Link>
               </div>
               <div className="relative">
                 <Input
@@ -67,12 +81,16 @@ export default function LoginPage() {
                   placeholder="••••••••"
                   required
                   value={formData.password}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
                 />
                 <Button
                   type="button"
                   variant="ghost"
                   size="icon"
                   className="absolute right-2 top-1/2 -translate-y-1/2"
+                  onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -85,19 +103,11 @@ export default function LoginPage() {
                 </Button>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="remember" checked={formData.rememberMe} />
-              <Label htmlFor="remember" className="text-sm">
-                Lembrar-me
-              </Label>
-            </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 mt-4">
-            <Link href="/dashboard" className="w-full">
-              <Button type="submit" className="w-full">
-                Entrar
-              </Button>
-            </Link>
+            <Button type="submit" className="w-full" onClick={handleSubmit}>
+              Entrar
+            </Button>
             <div className="text-center text-sm">
               Ainda não possui uma conta?{" "}
               <Link
