@@ -18,29 +18,29 @@ export default function ProfilePage() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">
+        <h1 className="text-3xl font-bold tracking-tight text-[var(--color-teal-0)]">
           Investment Profile
         </h1>
       </div>
       <Tabs defaultValue="profile" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="profile">Risk Profile</TabsTrigger>
-          <TabsTrigger value="goals">Investment Goals</TabsTrigger>
-          <TabsTrigger value="preferences">Preferences</TabsTrigger>
+          <TabsTrigger value="profile" className="text-[var(--color-teal-4)]">Risk Profile</TabsTrigger>
+          <TabsTrigger value="goals" className="text-[var(--color-teal-4)]">Investment Goals</TabsTrigger>
+          <TabsTrigger value="preferences" className="text-[var(--color-teal-4)]">Preferences</TabsTrigger>
         </TabsList>
         <TabsContent value="profile" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <Card className="col-span-2">
+            <Card className="col-span-2 text-[var(--color-teal-1)]">
               <CardHeader>
                 <CardTitle>Your Risk Profile</CardTitle>
                 <CardDescription>
                   Based on your answers, your investment profile is:
                 </CardDescription>
               </CardHeader>
-              <CardContent className="pb-2">
+              <CardContent className="pb-2 text-[var(--color-teal-2)]">
                 <div className="flex items-center justify-center py-4">
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold text-primary">
+                    <h3 className="text-2xl font-bold text-[var(--color-teal-1)]">
                       Moderate Growth
                     </h3>
                     <p className="text-sm text-muted-foreground mt-2">
@@ -56,7 +56,7 @@ export default function ProfilePage() {
                       <span className="text-sm font-medium">Moderate</span>
                     </div>
                     <div className="mt-2 h-2 w-full rounded-full bg-muted">
-                      <div className="h-full w-[60%] rounded-full bg-primary"></div>
+                      <div className="h-full w-[60%] rounded-full bg-[var(--color-teal-3)]"></div>
                     </div>
                   </div>
                   <div>
@@ -65,7 +65,7 @@ export default function ProfilePage() {
                       <span className="text-sm font-medium">5-10 years</span>
                     </div>
                     <div className="mt-2 h-2 w-full rounded-full bg-muted">
-                      <div className="h-full w-[70%] rounded-full bg-primary"></div>
+                      <div className="h-full w-[70%] rounded-full bg-[var(--color-teal-3)]"></div>
                     </div>
                   </div>
                   <div>
@@ -74,7 +74,7 @@ export default function ProfilePage() {
                       <span className="text-sm font-medium">Intermediate</span>
                     </div>
                     <div className="mt-2 h-2 w-full rounded-full bg-muted">
-                      <div className="h-full w-[65%] rounded-full bg-primary"></div>
+                      <div className="h-full w-[65%] rounded-full bg-[var(--color-teal-3)]"></div>
                     </div>
                   </div>
                 </div>
@@ -85,7 +85,7 @@ export default function ProfilePage() {
                 </Button>
               </CardFooter>
             </Card>
-            <Card className="col-span-2">
+            <Card className="col-span-2 text-[var(--color-teal-1)]">
               <CardHeader>
                 <CardTitle>Recommended Asset Allocation</CardTitle>
                 <CardDescription>
@@ -133,14 +133,14 @@ export default function ProfilePage() {
               </CardContent>
             </Card>
           </div>
-          <Card>
+          <Card className="text-[var(--color-teal-1)]">
             <CardHeader>
               <CardTitle>Risk Assessment Questionnaire</CardTitle>
               <CardDescription>
                 Your answers to our risk assessment questionnaire
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 text-[var(--color-teal-2)]">
               <div>
                 <h3 className="font-medium mb-2">
                   1. How long do you plan to invest your money before you need
@@ -148,19 +148,19 @@ export default function ProfilePage() {
                 </h3>
                 <RadioGroup defaultValue="5-10">
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="0-2" id="r1-1" />
+                    <RadioGroupItem value="0-2" id="r1-1" className="checked:bg-[var(--color-teal-2)]"/>
                     <Label htmlFor="r1-1">0-2 years</Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="3-5" id="r1-2" />
+                    <RadioGroupItem value="3-5" id="r1-2" className="checked:bg-[var(--color-teal-2)]"/>
                     <Label htmlFor="r1-2">3-5 years</Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="5-10" id="r1-3" />
+                    <RadioGroupItem value="5-10" id="r1-3" className="checked:bg-[var(--color-teal-2)]"/>
                     <Label htmlFor="r1-3">5-10 years</Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="10+" id="r1-4" />
+                    <RadioGroupItem value="10+" id="r1-4" className="checked:bg-[var(--color-teal-2)]"/>
                     <Label htmlFor="r1-4">10+ years</Label>
                   </div>
                 </RadioGroup>
@@ -226,7 +226,7 @@ export default function ProfilePage() {
           </Card>
         </TabsContent>
         <TabsContent value="goals" className="space-y-4">
-          <Card>
+          <Card className="text-[var(--color-teal-1)]">
             <CardHeader>
               <CardTitle>Investment Goals</CardTitle>
               <CardDescription>
@@ -243,7 +243,7 @@ export default function ProfilePage() {
                     </span>
                   </div>
                   <div className="h-2 w-full rounded-full bg-muted">
-                    <div className="h-full w-[42%] rounded-full bg-primary"></div>
+                    <div className="h-full w-[42%] rounded-full bg-[var(--color-teal-3)]"></div>
                   </div>
                   <div className="flex justify-between mt-1">
                     <span className="text-xs text-muted-foreground">
@@ -262,7 +262,8 @@ export default function ProfilePage() {
                     </span>
                   </div>
                   <div className="h-2 w-full rounded-full bg-muted">
-                    <div className="h-full w-[75%] rounded-full bg-primary"></div>
+                    <div className="h-full w-[75%] rounded-full bg-[var(--color-teal-3)]"></div>
+                    <div className="h-full w-[75%] rounded-full "></div>
                   </div>
                   <div className="flex justify-between mt-1">
                     <span className="text-xs text-muted-foreground">
@@ -281,7 +282,8 @@ export default function ProfilePage() {
                     </span>
                   </div>
                   <div className="h-2 w-full rounded-full bg-muted">
-                    <div className="h-full w-[17%] rounded-full bg-primary"></div>
+                    <div className="h-full w-[75%] rounded-full bg-[var(--color-teal-3)]"></div>
+                    <div className="h-full w-[17%] rounded-full "></div>
                   </div>
                   <div className="flex justify-between mt-1">
                     <span className="text-xs text-muted-foreground">
@@ -295,11 +297,11 @@ export default function ProfilePage() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Add New Goal</Button>
+              <Button className="bg-[var(--color-teal-1)]">Add New Goal</Button>
             </CardFooter>
           </Card>
           <Card>
-            <CardHeader>
+            <CardHeader className="text-[var(--color-teal-1)]">
               <CardTitle>Goal Projections</CardTitle>
               <CardDescription>
                 Projected growth of your investments toward your goals
@@ -316,7 +318,7 @@ export default function ProfilePage() {
           </Card>
         </TabsContent>
         <TabsContent value="preferences" className="space-y-4">
-          <Card>
+          <Card className="text-[var(--color-teal-1)]">
             <CardHeader>
               <CardTitle>Investment Preferences</CardTitle>
               <CardDescription>
@@ -324,7 +326,7 @@ export default function ProfilePage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div>
+              <div className="text-[var(--color-teal-2)]">
                 <h3 className="font-medium mb-2">Preferred Investment Types</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex items-center space-x-2">
@@ -383,7 +385,7 @@ export default function ProfilePage() {
                 </div>
               </div>
               <Separator />
-              <div>
+              <div className="text-[var(--color-teal-2)]">
                 <h3 className="font-medium mb-2">ESG Preferences</h3>
                 <RadioGroup defaultValue="moderate">
                   <div className="flex items-center space-x-2">
@@ -401,7 +403,7 @@ export default function ProfilePage() {
                 </RadioGroup>
               </div>
               <Separator />
-              <div>
+              <div className="text-[var(--color-teal-2)]">
                 <h3 className="font-medium mb-2">Sector Preferences</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex items-center space-x-2">
@@ -459,10 +461,10 @@ export default function ProfilePage() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Save Preferences</Button>
+              <Button className="bg-[var(--color-teal-1)]">Save Preferences</Button>
             </CardFooter>
           </Card>
-          <Card>
+          <Card className="text-[var(--color-teal-1)]">
             <CardHeader>
               <CardTitle>Investment Strategy</CardTitle>
               <CardDescription>
@@ -470,7 +472,7 @@ export default function ProfilePage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-4 text-[var(--color-teal-2)]">
                 <div>
                   <h3 className="font-medium mb-2">Rebalancing Frequency</h3>
                   <RadioGroup defaultValue="quarterly">
@@ -509,7 +511,7 @@ export default function ProfilePage() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Update Strategy</Button>
+              <Button className="bg-[var(--color-teal-1)]">Update Strategy</Button>
             </CardFooter>
           </Card>
         </TabsContent>
