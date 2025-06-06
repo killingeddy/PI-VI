@@ -138,7 +138,7 @@ export default function RegisterPage() {
                     riskTolerance: option ? option.value : null,
                   })
                 }
-                className="react-select-container"
+                className="react-select-"
                 classNamePrefix="react-select"
                 value={
                   formData.riskTolerance
@@ -175,7 +175,7 @@ export default function RegisterPage() {
                     investmentHorizon: option ? option.value : null,
                   })
                 }
-                className="react-select-container"
+                className="react-select-"
                 classNamePrefix="react-select"
                 value={
                   formData.investmentHorizon
@@ -212,7 +212,7 @@ export default function RegisterPage() {
                     investmentExperience: option ? option.value : null,
                   })
                 }
-                className="react-select-container"
+                className="react-select-"
                 classNamePrefix="react-select"
                 value={
                   formData.investmentExperience
