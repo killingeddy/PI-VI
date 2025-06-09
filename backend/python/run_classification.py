@@ -50,15 +50,36 @@ logging.basicConfig(filename=LOG_FILE,
 # =========== FUNÇÕES UTILITÁRIAS E ETL =====================
 
 def get_b3_tickers() -> List[str]:
-    tickers = [
-        'PETR4', 'VALE3', 'ITUB4', 'BBDC4', 'ABEV3', 'B3SA3', 'WEGE3',
-        'RENT3', 'BBAS3', 'PETR3', 'ITSA4', 'SUZB3', 'EQTL3', 'RADL3',
-        'JBSS3', 'BBSE3', 'SANB11', 'HYPE3', 'UGPA3', 'BRFS3', 'CMIG4',
-        'LREN3', 'BBDC3', 'VIVT3', 'MGLU3', 'GGBR4', 'EMBR3', 'RAIL3',
-        'CCRO3', 'TOTS3', 'KLBN11', 'CIEL3', 'SULA11', 'ENEV3', 'CSAN3',
-        'PCAR3', 'CSNA3', 'FLRY3', 'MRFG3', 'SBSP3', 'AZUL4', 'AMER3',
-        'MULT3', 'CYRE3', 'BRML3', 'COGN3', 'BPAC11', 'YDUQ3', 'TAEE11', 'GOAU4'
-    ]
+    tickers = [  
+        "JBSS3","BBAS3","COGN3","MGLU3","AZUL4","PETR4","ABEV3","GOLL4","B3SA3","ITSA4","LREN3","VAMO3","BBDC4","ITUB4",  
+        "CVCB3","VALE3","RENT3","CSAN3","BHIA3","ASAI3","GGBR4","BEEF3","RADL3","GMAT3","SUZB3","MRVE3","PRIO3","HAPV3",  
+        "PETR3","ENEV3","CMIG4","RAIL3","CSNA3","ANIM3","POMO4","YDUQ3","VIVT3","CXSE3","CPLE6","SRNA3","RAIZ4","OIBR3",  
+        "LWSA3","CPLE3","IFCM3","PETZ3","GOAU4","PCAR3","EQTL3","TIMS3","ELET3","SIMH3","AZZA3","MOVI3","CMIN3","USIM5",  
+        "EMBR3","BBDC3","VIVA3","NTCO3","VBBR3","BRAV3","WEGE3","BRFS3","SMFT3","UGPA3","BBSE3","DXCO3","KLBN11","CBAV3",  
+        "ECOR3","MOTV3","ALOS3","BPAC11","MYPK3","RCSL4","RDOR3","CYRE3","TEND3","RECV3","AZEV4","JHSF3","AZTE3","TOTS3",  
+        "IGTI11","CEAB3","MRFG3","HYPE3","FLRY3","BRAP4","HBSA3","CASH3","RAPT4","AURE3","MULT3","GFSA3","AZEV3","CSMG3",  
+        "LIGT3","SANB11","CURY3","AMER3","STBP3","QUAL3","LJQQ3","DIRR3","GGPS3","BPAN4","BRKM5","SBSP3","ALUP11",  
+        "ZAMP3","ENGI11","INTB3","SBFG3","PSSA3","GRND3","POSI3","KLBN4","HBOR3","ODPV3","PLPL3","SLCE3","EZTC3","TAEE11",  
+        "ISAE4","ALPA4","EGIE3","MLAS3","SAPR4","MDNE3","SYNE3","ENJU3","ONCO3","PMAM3","VVEO3","BRSR6","GUAR3","ELET6",  
+        "SAPR11","KEPL3","EVEN3","IRBR3","TTEN3","TRIS3","SMTO3","VULC3","MTRE3","CPFE3","DASA3","CSED3","WIZC3","SEER3",  
+        "PTBL3","PGMN3","CAML3","CMIG3","LAVV3","PORT3","ABCB4","FESA4","JSLG3","ARML3","RANI3","MILS3","POMO3","KLBN3",  
+        "MDIA3","BMOB3","NEOE3","ITUB3","ORVR3","SEQL3","PRNR3","SHUL4","BRBI11","TGMA3","VLID3","VTRU3","TUPY3","BMGB4",  
+        "JALL3","TFCO4","LEVE3","PNVL3","HBRE3","SOJA3","BLAU3","AMAR3","FIQE3","ESPA3","TASA4","LOGG3","MATD3","OPCT3",  
+        "DESK3","MEAL3","SAPR3","PFRM3","AERI3","USIM3","RNEW4","MELK3","VITT3","AGRO3","TECN3","RNEW3","FRAS3","ETER3",  
+        "RCSL3","AMOB3","ROMI3","BRST3","LVTC3","PINE4","TAEE4","UNIP6","DEXP3","SANB4","BIOM3","ITSA3","EUCA4","ALPK3",  
+        "AMBP3","PTNT4","PDTC3","VSTE3","SANB3","BRAP3","OIBR4","TAEE3","AVLL3","DMVF3","FHER3","LPSB3","RSID3","LUPA3",  
+        "ALLD3","GGBR3","DEXP4","FICT3","EQPA3","AGXY3","WHRL4","DOTZ3","SHOW3","IGTI3","TRAD3","TCSA3","ELMD3","BRKM3",  
+        "BEES3","AALR3","LAND3","CSUD3","GOAU3","ALUP4","AMAR11","INEP3","HAGA4","VIVR3","SCAR3","BAZA3","BOBR4","UCAS3",  
+        "CGRA4","RNEW11","RPMG3","HOOT4","CAMB3","TASA3","NGRD3","ALPA3","UNIP3","NORD3","AZEV11","MNDL3","BPAC3","PINE3",  
+        "RDNI3","ENGI3","LOGN3","BPAC5","CEBR6","BDLL4","BEES4","EMAE4","HAGA3","EUCA3","WEST3","OSXB3","GEPA4","BGIP4",  
+        "REAG3","EKTR4","CGRA3","AFLT3","NEXP3","CTSA4","MTSA4","CCTY3","CPLE5","TELB4","CEEB3","TELB3","DOHL4","REDE3",  
+        "MGEL4","SNSY5","COCE3","PPLA11","CGAS5","WLMM4","SNSY3","MOAR3","UNIP5","MNPR3","BALM3","EALT3","BDLL3","RPAD5",  
+        "ENMT3","SOND5","PATI3","WLMM3","CEBR5","CEDO4","PTNT3","BSLI3","PLAS3","GSHP3","RPAD3","DTCY3","BMKS3","RSUL4",  
+        "EKTR3","GEPA3","BALM4","LUXM4","MWET4","ESTR4","MRSA3B","EQMA3B","CRPG6","CRPG3","BMIN4","FESA3","BRKM6","FIEI3",  
+        "BMEB3","ATMP3","CLSC3","TKNO4","PEAB4","BAUH4","PSVM11","CTSA3","PATI4","DOHL3","BNBR3","SOND6","CTKA4","CTKA3",  
+        "HBTS5","MBLY3","PEAB3","PINE11","CBEE3","CRFB3","USIM6","FRIO3","CGAS3","BGIP3","BMIN3","AHEB5","MTSA3","LIPR3",  
+        "GPAR3","BRSR5","HETA4","MAPT3"  
+]  
     return tickers
 
 def fetch_stock_data(ticker: str, period: str = PERIOD) -> Optional[pd.DataFrame]:
@@ -192,6 +213,18 @@ class StockDataHandler:
         assert DATABASE_URL, "DATABASE_URL não configurada."
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
+        MAX_BIGINT = 9223372036854775807  
+
+        def cap_bigint(val):  
+            try:  
+                if pd.isna(val):  
+                    return None  
+                if abs(float(val)) > MAX_BIGINT:  
+                    return None  
+                return val  
+            except:  
+                return None  
+            
         for _, row in df_all.iterrows():
             try:
                 cur.execute("""
@@ -230,7 +263,7 @@ class StockDataHandler:
                         updated_at = CURRENT_TIMESTAMP
                 """, (
                     row['ticker'], row.get('company_name'), row.get('sector'), row.get('industry'),
-                    row.get('market_cap'), row.get('pe_ratio'), row.get('price_to_book'), row.get('roe'),
+                    cap_bigint(row.get('market_cap')), row.get('pe_ratio'), row.get('price_to_book'), row.get('roe'),
                     row.get('dividend_yield'), row.get('profit_margins'), row.get('gross_margins'), row.get('ebitda_margins'),
                     row.get('enterprise_value'), row.get('revenue'), row.get('website'), row.get('description'),
                     row.get('volatility'), row.get('max_drawdown'), row.get('beta'),row.get('mean_return'), 
@@ -238,6 +271,7 @@ class StockDataHandler:
                 ))
             except Exception as err:
                 logging.error(f"Erro ao inserir {row['ticker']} no Supabase: {err}")
+                conn.rollback()
         conn.commit()
         cur.close()
         conn.close()
