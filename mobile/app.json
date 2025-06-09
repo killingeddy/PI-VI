@@ -1,10 +1,16 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "pi-vi",
+    "slug": "pi-vi",
     "version": "1.0.0",
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "1ac3c1a4-2b66-48c5-8fc8-e7a090016ee2"
+      }
+    }
   }
 }
