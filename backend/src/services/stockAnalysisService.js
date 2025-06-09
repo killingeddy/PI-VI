@@ -175,26 +175,22 @@ class StockAnalysisService {
   async getStocksWithFilters(filters = {}, limit = 100, offset = 0) {
     try {
       let query = `
-        SELECT DISTINCT ON (s.symbol)
-              s.symbol,
-              s.company_name,
-              s.sector,
-              s.risk_category,
-              s.dividend_yield,
-              s.adj_close AS latest_price,
-              s.date AS price_date,
-              recent_prices.recent_history
+        SELECT 
+          s.id, 
+          s.symbol, 
+          s.company_name, 
+          s.sector, 
+          s.risk_category, 
+          trunc(s.dividend_yield, 2),
+            trunc(sp.adj_close, 2) as latest_price,
+            sp."date" as price_date
         FROM stocks s
-        LEFT JOIN LATERAL (
-          SELECT json_agg(sub ORDER BY sub.date DESC) AS recent_history
-          FROM (
-            SELECT date, adj_close
-            FROM stocks s2
-            WHERE s2.symbol = s.symbol
-            ORDER BY date DESC
-            LIMIT 10
-          ) sub
-        ) recent_prices ON true
+        LEFT JOIN (
+          SELECT DISTINCT ON (stock_id) stock_id, adj_close, "date"
+          FROM stock_prices
+          ORDER BY stock_id, "date" DESC
+        ) sp ON s.id = sp.stock_id
+        WHERE 1=1
       `;
       
       const queryParams = [];
