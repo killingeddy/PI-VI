@@ -30,12 +30,12 @@ async function importRiskData() {
         // Processar cada registro
         for (const item of riskData) {
           try {
-            const { Ticker, Volatility, Max_Drawdown, Beta, Liquidity, Risk_Level, Risk_Description } = item;
+            const { ticker, volatility, max_drawdown, beta, liquidity, risk_level, risk_category } = item;
             
             // Verificar se a ação já existe
             const existingStock = await db.query(
               'SELECT id FROM stocks WHERE symbol = $1',
-              [Ticker]
+              [ticker]
             );
             
             if (existingStock.rows.length > 0) {
@@ -43,30 +43,30 @@ async function importRiskData() {
               await db.query(
                 `UPDATE stocks 
                  SET risk_level = $1, 
-                     risk_description = $2, 
+                     risk_category = $2, 
                      volatility = $3, 
                      max_drawdown = $4, 
                      beta = $5, 
                      liquidity = $6, 
                      updated_at = CURRENT_TIMESTAMP
                  WHERE symbol = $7`,
-                [Risk_Level, Risk_Description, Volatility, Max_Drawdown, Beta, Liquidity, Ticker]
+                [risk_level, risk_category, volatility, max_drawdown, beta, liquidity, ticker]
               );
               updated++;
             } else {
               // Criar um registro básico para esta ação
               await db.query(
                 `INSERT INTO stocks 
-                 (symbol, company_name, risk_level, risk_description, 
+                 (symbol, company_name, risk_level, risk_category, 
                   volatility, max_drawdown, beta, liquidity)
                  VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
-                [Ticker, Ticker, Risk_Level, Risk_Description, 
-                 Volatility, Max_Drawdown, Beta, Liquidity]
+                [ticker, ticker, risk_level, risk_category, 
+                 volatility, max_drawdown, beta, liquidity]
               );
               created++;
             }
           } catch (error) {
-            console.error(`Erro ao importar ${item.Ticker}:`, error);
+            console.error(`Erro ao importar ${item.ticker}:`, error);
             skipped++;
           }
         }
@@ -78,15 +78,15 @@ async function importRiskData() {
         
         // Estatísticas de distribuição de risco
         const riskDistribution = await db.query(`
-          SELECT risk_description, COUNT(*) as count 
+          SELECT risk_category, COUNT(*) as count 
           FROM stocks 
-          GROUP BY risk_description 
-          ORDER BY risk_description
+          GROUP BY risk_category 
+          ORDER BY risk_category
         `);
         
         console.log('\n=== Distribuição de Risco ===');
         riskDistribution.rows.forEach(row => {
-          console.log(`${row.risk_description}: ${row.count} ações`);
+          console.log(`${row.risk_category}: ${row.count} ações`);
         });
         
         console.log('\n✓ Importação concluída com sucesso!');

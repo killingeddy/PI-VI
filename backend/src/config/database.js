@@ -3,14 +3,18 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// Conexão com o Supabase (com URL encoding na senha)
 const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({
   connectionString,
   ssl: process.env.NODE_ENV === 'production' 
-    ? { rejectUnauthorized: false } 
+    ? { rejectUnauthorized: false }
     : false
+});
+
+// Tratamento de reconexão
+pool.on('error', (err, client) => {
+  console.error('❌ Erro inesperado no pool do PostgreSQL:', err);
 });
 
 // Teste inicial de conexão

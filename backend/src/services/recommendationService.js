@@ -1,6 +1,7 @@
 const Stock = require('../models/stockModel');
 const InvestorProfile = require('../models/investorProfileModel');
 const InvestorProfileService = require('./investorProfileService');
+const maxPerCategory = parseInt(process.env.RECOMMENDATION_LIMIT) || 10;
 
 class RecommendationService {
   async getRecommendationsForUser(userId) {
@@ -57,13 +58,13 @@ class RecommendationService {
   _formatRecommendations(stocks, weight) {
     // Limitar a quantidade e adicionar peso de recomendação
     return stocks
-      .slice(0, 5)  // Limitar a 5 recomendações por categoria
+      .slice(0, maxPerCategory) 
       .map(stock => ({
         id: stock.id,
         symbol: stock.symbol,
         company_name: stock.company_name,
         risk_level: stock.risk_level,
-        risk_description: stock.risk_description,
+        risk_category: stock.risk_category,
         volatility: stock.volatility,
         beta: stock.beta,
         recommendation_weight: weight

@@ -43,42 +43,42 @@ class Stock {
     
     for (const item of classifiedStocks) {
       try {
-        const { Ticker, Volatility, Max_Drawdown, Beta, Liquidity, Risk_Level, Risk_Description } = item;
+        const { ticker, volatility, max_drawdown, beta, liquidity, risk_level, risk_category } = item;
         
         // Verificar se a ação já existe
-        const existingStock = await this.getBySymbol(Ticker);
+        const existingStock = await this.getBySymbol(ticker);
         
         if (existingStock) {
           // Atualizar ação existente
           const result = await db.query(
             `UPDATE stocks 
-             SET risk_level = $1, risk_description = $2, volatility = $3, 
+             SET risk_level = $1, risk_category = $2, volatility = $3, 
                  max_drawdown = $4, beta = $5, liquidity = $6, 
                  updated_at = CURRENT_TIMESTAMP
              WHERE symbol = $7
              RETURNING *`,
-            [Risk_Level, Risk_Description, Volatility, Max_Drawdown, 
-             Beta, Liquidity, Ticker]
+            [risk_level, risk_category, volatility, max_drawdown, 
+             beta, liquidity, ticker]
           );
           stocks.push(result.rows[0]);
         } else {
           // Obter nome da empresa para a ação
-          const companyName = Ticker;
+          const companyName = ticker;
           
           // Criar nova ação
           const result = await db.query(
             `INSERT INTO stocks 
-             (symbol, company_name, risk_level, risk_description, 
+             (symbol, company_name, risk_level, risk_category, 
               volatility, max_drawdown, beta, liquidity)
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
              RETURNING *`,
-            [Ticker, companyName, Risk_Level, Risk_Description, 
-             Volatility, Max_Drawdown, Beta, Liquidity]
+            [ticker, company_name, risk_level, risk_category, 
+             volatility, max_drawdown, beta, liquidity]
           );
           stocks.push(result.rows[0]);
         }
       } catch (error) {
-        console.error(`Erro ao importar ${item.Ticker}:`, error);
+        console.error(`Erro ao importar ${item.ticker}:`, error);
       }
     }
     

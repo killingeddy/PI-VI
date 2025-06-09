@@ -53,10 +53,10 @@ class Asset {
     
     for (const item of riskProfile) {
       try {
-        const { Crypto, Risk_Level, Volatility, Max_Drawdown, Beta, Liquidity } = item;
+        const { ticker, risk_level, volatility, max_drawdown, beta, liquidity } = item;
         
         // Verificar se o ativo já existe
-        const existingAsset = await this.getBySymbol(Crypto);
+        const existingAsset = await this.getBySymbol(ticker);
         
         if (existingAsset) {
           // Atualizar ativo existente
@@ -65,21 +65,21 @@ class Asset {
              SET risk_level = $1, volatility = $2, max_drawdown = $3, beta = $4, liquidity = $5, updated_at = CURRENT_TIMESTAMP
              WHERE symbol = $6
              RETURNING *`,
-            [Risk_Level, Volatility, Max_Drawdown, Beta, Liquidity, Crypto]
+            [risk_level, volatility, max_drawdown, beta, liquidity, ticker]
           );
           assets.push(result.rows[0]);
         } else {
           // Criar novo ativo
           const result = await db.query(
-            `INSERT INTO assets (symbol, name, type, risk_level, volatility, max_drawdown, beta, liquidity)
-             VALUES ($1, $1, 'crypto', $2, $3, $4, $5, $6)
+            `INSERT INTO assets (symbol, company_name, type, risk_level, volatility, max_drawdown, beta, liquidity)
+             VALUES ($1, $1, 'ticker', $2, $3, $4, $5, $6)
              RETURNING *`,
-            [Crypto, Risk_Level, Volatility, Max_Drawdown, Beta, Liquidity]
+            [ticker, risk_level, volatility, max_drawdown, beta, liquidity]
           );
           assets.push(result.rows[0]);
         }
       } catch (error) {
-        console.error(`Erro ao importar ${item.Crypto}:`, error);
+        console.error(`Erro ao importar ${item.ticker}:`, error);
       }
     }
     

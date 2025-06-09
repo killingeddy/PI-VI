@@ -6,6 +6,16 @@ const JWT_SECRET = process.env.JWT_SECRET || 'seu_segredo_jwt';
 
 class AuthController {
   static async register(req, res) {
+    // Antes de criar o usuário
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Formato de e-mail inválido'
+      });
+    }
+
     try {
       const { email, password, fullName } = req.body;
       
