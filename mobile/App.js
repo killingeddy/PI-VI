@@ -42,7 +42,7 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            tabBarLabel: "Home",
+            tabBarShowLabel: false,
             tabBarIcon: ({ focused, color }) => (
               <Ionicons
                 name={focused ? "home" : "home-outline"}
@@ -56,7 +56,7 @@ export default function App() {
           name="Auth"
           component={AuthStack}
           options={{
-            tabBarLabel: "Perfil",
+            tabBarShowLabel: false,
             tabBarIcon: ({ focused, color }) => (
               <MaterialCommunityIcons
                 name={focused ? "account" : "account-outline"}
