@@ -6,7 +6,8 @@ class StockController {
     try {
       const filters = {
         riskCategory: req.query.risk_category,
-        sector: req.query.sector
+        sector: req.query.sector,
+        search: req.query.search
       };
 
       const limit = parseInt(req.query.limit) || 100;

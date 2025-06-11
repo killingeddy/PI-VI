@@ -224,6 +224,14 @@ class StockAnalysisService {
         paramCount++;
       }
 
+      // Filtro por busca de texto
+      if (filters.search) {
+        const searchTerm = `%${filters.search}%`;
+        query += ` AND (s.symbol ILIKE $${paramCount} OR s.company_name ILIKE $${paramCount})`;
+        queryParams.push(searchTerm, searchTerm);
+        paramCount += 2;
+      }
+
       // Ordenação
       query += ` ORDER BY s.symbol ASC`;
 
