@@ -5,12 +5,16 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
+import ToastManager, { Toast } from "toastify-react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import { Button } from "react-native-paper";
+import { Button, TextInput } from "react-native-paper";
 import Loader from "../../tools/loader";
+import Modal from "react-native-modal";
 import { api } from "../../tools/api";
 import { Image } from "react-native";
+import moment from "moment";
 import React from "react";
 
 export default function UserSharesScreen({ navigation }) {
@@ -22,6 +26,14 @@ export default function UserSharesScreen({ navigation }) {
   const [user, setUser] = React.useState(null);
 
   const [loading, setLoading] = React.useState(false);
+  const [isModalVisible, setIsModalVisible] = React.useState(false);
+  const [registering, setRegistering] = React.useState(false);
+
+  const [selectedStock, setSelectedStock] = React.useState({});
+
+  const [quantity, setQuantity] = React.useState(0);
+  const [purchasePrice, setPurchasePrice] = React.useState(0);
+  const [purchaseDate, setPurchaseDate] = React.useState(new Date());
 
   const [primaryRecommendations, setPrimaryRecommendations] = React.useState(
     []
@@ -57,6 +69,43 @@ export default function UserSharesScreen({ navigation }) {
       console.error("Error retrieving userInfo:", error);
     }
     return null;
+  };
+
+  const handleStockAcquisition = async () => {
+    setRegistering(true);
+    if (!selectedStock || !quantity || !purchasePrice) {
+      Toast.error("Por favor, preencha todos os campos.");
+      setRegistering(false);
+      return;
+    }
+
+    const acquisitionData = {
+      stockId: selectedStock.id,
+      symbol: selectedStock.symbol,
+      quantity: quantity,
+      purchasePrice: purchasePrice,
+      purchaseDate: moment(purchaseDate).format("YYYY-MM-DD"),
+    };
+
+    await api
+      .post(`/portfolios/${user?.id}/stocks`, acquisitionData)
+      .then((response) => {
+        Toast.success("Ação adquirida com sucesso!");
+        setIsModalVisible(false);
+        setSelectedStock({});
+        setQuantity(0);
+        setPurchasePrice(0);
+        setPurchaseDate(new Date());
+        getRecommendations();
+      })
+      .catch((error) => {
+        console.log(error);
+
+        Toast.error(error?.response?.data?.error || "Erro ao adquirir ação");
+      })
+      .finally(() => {
+        setRegistering(false);
+      });
   };
 
   useFocusEffect(
@@ -324,7 +373,10 @@ export default function UserSharesScreen({ navigation }) {
                           width: "100%",
                           height: 40,
                         }}
-                        onPress={() => console.log("Pressed")}
+                        onPress={() => {
+                          setSelectedStock(stock);
+                          setIsModalVisible(true);
+                        }}
                       >
                         Adquirir
                       </Button>
@@ -464,7 +516,10 @@ export default function UserSharesScreen({ navigation }) {
                           width: "100%",
                           height: 40,
                         }}
-                        onPress={() => console.log("Pressed")}
+                        onPress={() => {
+                          setSelectedStock(stock);
+                          setIsModalVisible(true);
+                        }}
                       >
                         Adquirir
                       </Button>
@@ -476,6 +531,112 @@ export default function UserSharesScreen({ navigation }) {
           )}
         </>
       )}
+      <Modal
+        isVisible={isModalVisible}
+        onBackdropPress={() => setIsModalVisible(false)}
+        style={{ justifyContent: "center", alignItems: "center" }}
+      >
+        <KeyboardAvoidingView
+          style={{
+            padding: 20,
+            backgroundColor: "#fff",
+            width: "100%",
+            borderRadius: 20,
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => setIsModalVisible(false)}
+            style={{
+              position: "absolute",
+              top: 10,
+              right: 10,
+              zIndex: 1000,
+            }}
+          >
+            <Text style={{ fontSize: 20, color: "#024d40" }}>✕</Text>
+          </TouchableOpacity>
+          {user ? (
+            <>
+              {registering ? (
+                <View
+                  style={{
+                    height: 100,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Loader />
+                </View>
+              ) : (
+                <>
+                  <>
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        fontWeight: "bold",
+                        marginBottom: 10,
+                      }}
+                    >
+                      Adquirir Ação: {selectedStock.company_name}
+                    </Text>
+                    <View>
+                      <TextInput
+                        label="Quantidade"
+                        mode="outlined"
+                        value={quantity}
+                        onChangeText={(text) => setQuantity(parseInt(text))}
+                        keyboardType="numeric"
+                        style={{ marginBottom: 10 }}
+                      />
+                    </View>
+                    <View>
+                      <TextInput
+                        label="Preço de Compra"
+                        mode="outlined"
+                        value={purchasePrice}
+                        onChangeText={(text) =>
+                          setPurchasePrice(parseFloat(text))
+                        }
+                        keyboardType="numeric"
+                        style={{ marginBottom: 10 }}
+                      />
+                    </View>
+                    <TouchableOpacity
+                      onPress={() => {
+                        handleStockAcquisition();
+                      }}
+                      style={{
+                        backgroundColor: "#024d40",
+                        width: "100%",
+                        height: 40,
+                        marginTop: 10,
+                        justifyContent: "center",
+                        borderRadius: 100,
+                        zIndex: 100,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: "#fff",
+                          textAlign: "center",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {registering ? "Registrando..." : "Registrar Ação"}
+                      </Text>
+                    </TouchableOpacity>
+                  </>
+                </>
+              )}
+            </>
+          ) : (
+            <Text style={{ fontSize: 16, marginBottom: 10 }}>
+              Por favor, faça login para adquirir ações.
+            </Text>
+          )}
+        </KeyboardAvoidingView>
+      </Modal>
+      <ToastManager />
     </View>
   );
 }
