@@ -227,9 +227,9 @@ class StockAnalysisService {
       // Filtro por busca de texto
       if (filters.search) {
         const searchTerm = `%${filters.search}%`;
-        query += ` AND (s.symbol ILIKE $${paramCount} OR s.company_name ILIKE $${paramCount})`;
-        queryParams.push(searchTerm, searchTerm);
-        paramCount += 2;
+        query += ` AND concat(s.symbol, ' ', s.company_name) ILIKE $${paramCount}`;
+        queryParams.push(searchTerm);
+        paramCount++;
       }
 
       // Ordenação
