@@ -7,30 +7,23 @@ class StockAnalysisService {
    * @returns {Object} Análise técnica da ação
    */
   async analyzeStock(symbol) {
-    try {
-      // Obter ID da ação
-      const stockResult = await db.query('SELECT id FROM stocks WHERE symbol = $1', [symbol]);
-      if (stockResult.rows.length === 0) {
-        throw new Error(`Ação com símbolo ${symbol} não encontrada`);
-      }
-      
-      const stockId = stockResult.rows[0].id;
-      
+    try {  
+    // Buscar cadastro completo da ação  
+    const stockResult = await db.query('SELECT * FROM stocks WHERE symbol = $1', [symbol]);  
+    if (stockResult.rows.length === 0) {  
+      throw new Error(`Ação com símbolo ${symbol} não encontrada`);  
+    }  
+    const stockData = stockResult.rows[0]; 
       // Obter dados históricos dos últimos 252 dias úteis (1 ano)
-      const pricesResult = await db.query(
-        `SELECT date, adj_close, volume 
-        FROM stock_prices 
-         WHERE stock_id = $1 
-         ORDER BY date DESC 
-         LIMIT 252`,
-        [stockId]
-      );
-      
-      const prices = pricesResult.rows.reverse(); // Ordem cronológica
-      
-      if (prices.length < 20) {
-        throw new Error('Dados históricos insuficientes para análise');
-      }
+       const stockId = stockData.id;  
+    const pricesResult = await db.query(`  
+      SELECT date, adj_close, volume   
+      FROM stock_prices   
+      WHERE stock_id = $1   
+      ORDER BY date DESC  
+      LIMIT 252`, [stockId]);  
+    const prices = pricesResult.rows.reverse();  
+    if (prices.length < 20) throw new Error('Dados históricos insuficientes para análise');
       
       // Calcular média móvel de 20 dias
       const ma20 = this.calculateMovingAverage(prices, 20);
@@ -56,27 +49,48 @@ class StockAnalysisService {
       const previousPrice = prices[prices.length - 2].adj_close;
       const dailyChange = ((latestPrice - previousPrice) / previousPrice) * 100;
       
-      return {
-        symbol,
-        latestPrice,
-        dailyChange,
-        movingAverage20Days: ma20[ma20.length - 1],
-        movingAverage50Days: ma50[ma50.length - 1],
-        rsi: rsi[rsi.length - 1],
-        volatility,
-        avgDailyReturn,
-        recentTrend,
-        priceHistory: prices.map(p => ({
-          date: sp.date,
-          price: sp.adj_close,
-          volume: sp.volume
-        }))
-      };
-    } catch (error) {
-      console.error(`Erro ao analisar ação ${symbol}:`, error);
-      throw error;
-    }
-  }
+      return {  
+      symbol: stockData.symbol,  
+      company_name: stockData.company_name,  
+      sector: stockData.sector,  
+      industry: stockData.industry,  
+      risk_category: stockData.risk_category,  
+      dividend_yield: stockData.dividend_yield,  
+      risk_level: stockData.risk_level,  
+      volatility: stockData.volatility,  
+      max_drawdown: stockData.max_drawdown,  
+      beta: stockData.beta,  
+      liquidity: stockData.liquidity,  
+      market_cap: stockData.market_cap,  
+      pe_ratio: stockData.pe_ratio,  
+      price_to_book: stockData.price_to_book,  
+      roe: stockData.roe,  
+      profit_margins: stockData.profit_margins,  
+      gross_margins: stockData.gross_margins,  
+      ebitda_margins: stockData.ebitda_margins,  
+      enterprise_value: stockData.enterprise_value,  
+      revenue: stockData.revenue,  
+      website: stockData.website,  
+      description: stockData.description,  
+      // Dados técnicos calculados  
+      latestPrice,  
+      dailyChange,  
+      movingAverage20Days: ma20[ma20.length - 1],  
+      movingAverage50Days: ma50[ma50.length - 1],  
+      rsi: rsi[rsi.length - 1],  
+      avgDailyReturn,  
+      recentTrend,  
+      priceHistory: prices.map(p => ({  
+        date: p.date,  
+        price: p.adj_close,  
+        volume: p.volume  
+      }))  
+    };  
+  } catch (error) {  
+    console.error(`Erro ao analisar ação ${symbol}:`, error);  
+    throw error;  
+  }  
+}  
   
   // Calcula a média móvel para um período específico
   calculateMovingAverage(prices, period) {
