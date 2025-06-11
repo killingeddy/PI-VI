@@ -390,20 +390,38 @@ export default function Profile({ navigation }) {
               </Text>
             </TouchableOpacity>
           </View>
-          <Button
-            onPress={() => handleLogout()}
+          <View
             style={{
               alignSelf: "center",
               borderRadius: 50,
               width: "90%",
-              borderColor: "#235c5b",
-              borderWidth: 1,
               position: "absolute",
               bottom: 20,
+              justifyContent: "space-between",
+              display: "flex",
+              flexDirection: "row",
             }}
           >
-            <Text style={{ color: "#235c5b" }}>Sair</Text>
-          </Button>
+            <Button
+              onPress={() => navigation.navigate("Home")}
+              style={{
+                width: "38%",
+                backgroundColor: "#235c5b",
+              }}
+            >
+              <Text style={{ color: "#fff" }}>Início</Text>
+            </Button>
+            <Button
+              onPress={() => handleLogout()}
+              style={{
+                width: "58%",
+                borderColor: "#235c5b",
+                borderWidth: 1,
+              }}
+            >
+              <Text style={{ color: "#235c5b" }}>Sair</Text>
+            </Button>
+          </View>
         </>
       )}
       <ToastManager />
