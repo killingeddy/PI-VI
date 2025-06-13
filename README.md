@@ -40,5 +40,5 @@ Este projeto foi desenvolvido como parte do Projeto Interdisciplinar do 6º seme
   Responsável pela classificação do perfil de investidor e sugestão de ativos com base em modelos de aprendizado de máquina e dados de mercado.
 
 ### 🗃️ Banco de Dados
-- **PostgreSQL**  
+- **PostgreSQL** 
   Utilizado para armazenar dados dos usuários, investimentos, perfis e histórico de sugestões.
