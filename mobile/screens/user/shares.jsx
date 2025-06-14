@@ -637,7 +637,7 @@ export default function UserSharesScreen({ navigation }) {
                       <TextInput
                         label="Quantidade"
                         mode="outlined"
-                        value={quantity}
+                        value={quantity || 0}
                         onChangeText={(text) => setQuantity(parseInt(text))}
                         keyboardType="numeric"
                         style={{ marginBottom: 10 }}
@@ -647,7 +647,7 @@ export default function UserSharesScreen({ navigation }) {
                       <TextInput
                         label="Preço de Compra"
                         mode="outlined"
-                        value={purchasePrice}
+                        value={purchasePrice || 0}
                         onChangeText={(text) =>
                           setPurchasePrice(parseFloat(text))
                         }
