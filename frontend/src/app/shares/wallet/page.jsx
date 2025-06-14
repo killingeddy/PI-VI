@@ -68,6 +68,7 @@ export default function InvestmentsPage() {
     }
   };
 
+
   const onSubmit = async (data) => {
     const userInfo = getUserInfo();
     if (!userInfo?.id) {
@@ -95,21 +96,21 @@ export default function InvestmentsPage() {
     }
   };
 
-  const handleEdit = (stock) => {
-    setEditingStockId(stock.id);
-    setValue("stockId", stock.stockId);
-    setValue("symbol", stock.symbol);
-    setValue("quantity", stock.quantity);
-    setValue("purchasePrice", stock.purchasePrice);
+  // const handleEdit = (stock) => {
+  //   setEditingStockId(stock.id);
+  //   setValue("stockId", stock.stockId);
+  //   setValue("symbol", stock.symbol);
+  //   setValue("quantity", stock.quantity);
+  //   setValue("purchasePrice", stock.purchasePrice);
 
-    const formatDate = (dateString) => {
-      if (!dateString) return "";
-      const date = new Date(dateString);
-      return date.toISOString().split("T")[0];
-    };
+  //   const formatDate = (dateString) => {
+  //     if (!dateString) return "";
+  //     const date = new Date(dateString);
+  //     return date.toISOString().split("T")[0];
+  //   };
 
-    setValue("purchaseDate", formatDate(stock.purchaseDate));
-  };
+  //   setValue("purchaseDate", formatDate(stock.purchaseDate));
+  // };
 
   const handleCancelEdit = () => {
     setEditingStockId(null);
@@ -131,6 +132,26 @@ export default function InvestmentsPage() {
   };
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+
+  const renderCustomLabel = ({ name, percent }) => {
+  return `${name}: ${(percent * 100).toFixed(2)}%`;
+};
+
+
+  const renderCustomLegend = (props) => {
+  const { payload } = props;
+  return (
+    <ul>
+      {payload.map((entry, index) => (
+        <li key={`item-${index}`} style={{ color: entry.color }}>
+          {`${entry.value} - ${Number(entry.payload.value).toFixed(2)}`}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+
 
   return (
     <div className="flex flex-col gap-6 p-6 min-h-screen bg-muted/40 items-center">
@@ -188,8 +209,8 @@ export default function InvestmentsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <PieChart width={300} height={240}>
-                <Pie
+              <PieChart width={400} height={340}>
+                <Pie 
                   data={Object.entries(summary.riskDistribution).map(
                     ([name, value]) => ({ name, value })
                   )}
@@ -198,7 +219,7 @@ export default function InvestmentsPage() {
                   cx="50%"
                   cy="50%"
                   outerRadius={80}
-                  label
+                  label={renderCustomLabel}
                 >
                   {Object.keys(summary.riskDistribution).map((_, index) => (
                     <Cell
@@ -207,8 +228,8 @@ export default function InvestmentsPage() {
                     />
                   ))}
                 </Pie>
-                <Tooltip />
-                <Legend />
+                <Tooltip formatter={(value) => Number(value).toFixed(2)}/>
+                <Legend content={renderCustomLegend}/>
               </PieChart>
             </CardContent>
           </Card>
@@ -244,9 +265,6 @@ export default function InvestmentsPage() {
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-1">
                 <p>
-                  <strong>ID da Ação:</strong> {stock.stock_id}
-                </p>
-                <p>
                   <strong>Símbolo da Ação:</strong> {stock.symbol}
                 </p>
                 <p>
@@ -264,9 +282,6 @@ export default function InvestmentsPage() {
                   <strong>Categoria de risco:</strong> {stock.risk_category}
                 </p>
                 <p>
-                  <strong>Nível de risco:</strong> {stock.risk_level}
-                </p>
-                <p>
                   <strong>Volatilidade:</strong>{" "}
                   {parseFloat(stock.volatility).toFixed(2)}
                 </p>
@@ -278,7 +293,7 @@ export default function InvestmentsPage() {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-6 rounded-lg shadow-sm space-y-4 w-full"
+        className="bg-white p-6 rounded-lg shadow-sm space-y-4 w-full max-w-[1152px]"
       >
         <div className="flex justify-between items-center">
           <h2 className="text-xl font-semibold text-primary">

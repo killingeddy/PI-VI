@@ -50,6 +50,10 @@ export default function DashboardPage() {
             >
               <h3 className="text-xl font-semibold">{stock.symbol}</h3>
               <p className="text-sm text-muted-foreground">
+                Id: {" "}
+                {stock.id}
+              </p>
+              <p className="text-sm text-muted-foreground">
                 Preço Atual: R${" "}
                 {formatPrice(parseFloat(stock.latest_price).toFixed(2))}
               </p>

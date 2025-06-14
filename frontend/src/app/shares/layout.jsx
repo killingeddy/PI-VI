@@ -51,6 +51,10 @@ export default function DashboardLayout({ children }) {
     },
   ];
 
+  const handleLogout = () => {
+    localStorage.clear();
+  };
+
   const getUserInfo = async () => {
     const userInfo = localStorage.getItem("userInfo");
     if (userInfo) {
@@ -87,8 +91,9 @@ export default function DashboardLayout({ children }) {
             <Link
               href="/"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-red-500 hover:bg-muted"
+              onClick={handleLogout}
             >
-              <LogOut className="h-4 w-4" />
+              <LogOut className="h-4 w-4"/>
               Logout
             </Link>
           </nav>

@@ -67,7 +67,6 @@ export default function RecommendationsPage() {
       <CardContent className="text-sm text-muted-foreground space-y-1">
         <p><strong>ID:</strong> {stock.id}</p>
         <p><strong>Categoria de risco:</strong> {stock.risk_category}</p>
-        <p><strong>Nível de risco:</strong> {stock.risk_level}</p>
         <p><strong>Volatilidade:</strong> {stock.volatility}</p>
         <p><strong>Beta:</strong> {stock.beta}</p>
         <p><strong>Peso da recomendação:</strong> {stock.recommendation_weight}</p>
@@ -86,9 +85,9 @@ export default function RecommendationsPage() {
       ) : (
         <>
           <section>
-            <h2 className="text-2xl font-semibold mb-4 text-green-700">Recomendações Primárias</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-[#4a8c84] text-center mt-10">Recomendações Primárias</h2>
             {primary.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[1152px] m-auto">
                 {primary.map(renderStockCard)}
               </div>
             ) : (
@@ -97,9 +96,9 @@ export default function RecommendationsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mt-8 mb-4 text-yellow-700">Recomendações Secundárias</h2>
+            <h2 className="text-2xl font-semibold mt-10 mb-6 text-[#4a8c84] text-center">Recomendações Secundárias</h2>
             {secondary.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[1152px] m-auto">
                 {secondary.map(renderStockCard)}
               </div>
             ) : (
