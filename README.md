@@ -42,3 +42,9 @@ Este projeto foi desenvolvido como parte do Projeto Interdisciplinar do 6º seme
 ### 🗃️ Banco de Dados
 - **PostgreSQL** 
   Utilizado para armazenar dados dos usuários, investimentos, perfis e histórico de sugestões.
+
+
+## Vídeo de Apresentação
+Clique na imagem abaixo para assistir ao vídeo de apresentação:
+
+[![Assista ao vídeo](https://img.youtube.com/vi/vWqrZ4FjjHA/maxresdefault.jpg)](https://youtu.be/vWqrZ4FjjHA)
